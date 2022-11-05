@@ -10,8 +10,8 @@ com/example/demo/utils/ValidationRegex.java
  com.example.demo.utils.ValidationRegex
 com/example/demo/src/service/UserService.java
  com.example.demo.src.service.UserService
-com/example/demo/src/service/NovelService.java
- com.example.demo.src.service.NovelService
+com/example/demo/utils/JwtService.java
+ com.example.demo.utils.JwtService
 com/example/demo/config/BaseResponseStatus.java
  com.example.demo.config.BaseResponseStatus
 com/example/demo/src/entity/KEYWORD.java
@@ -24,8 +24,8 @@ com/example/demo/src/WebSecurityConfig.java
 com/example/demo/src/entity/RELAY.java
  com.example.demo.src.entity.RELAY
  com.example.demo.src.entity.RELAY$RELAYBuilder
-com/example/demo/src/controller/NovelController.java
- com.example.demo.src.controller.NovelController
+com/example/demo/src/dto/response/PostSigninRes.java
+ com.example.demo.src.dto.response.PostSigninRes
 com/example/demo/src/repository/NovelRepository.java
  com.example.demo.src.repository.NovelRepository
 com/example/demo/src/dto/response/PostSignUpRes.java
@@ -41,6 +41,9 @@ com/example/demo/src/repository/UserRepository.java
  com.example.demo.src.repository.UserRepository
 com/example/demo/config/secret/Secret.java
  com.example.demo.config.secret.Secret
+com/example/demo/src/entity/LIKEINFO.java
+ com.example.demo.src.entity.LIKEINFO
+ com.example.demo.src.entity.LIKEINFO$LIKEINFOBuilder
 com/example/demo/src/entity/KEYWORDRANK.java
  com.example.demo.src.entity.KEYWORDRANK
  com.example.demo.src.entity.KEYWORDRANK$KEYWORDRANKBuilder
@@ -62,10 +65,12 @@ com/example/demo/config/BaseException.java
  com.example.demo.config.BaseException
 com/example/demo/DemoApplication.java
  com.example.demo.DemoApplication
-com/example/demo/src/dto/response/PostSigninRes.java
- com.example.demo.src.dto.response.PostSigninRes
-com/example/demo/src/entity/LIKEINFO.java
- com.example.demo.src.entity.LIKEINFO
- com.example.demo.src.entity.LIKEINFO$LIKEINFOBuilder
-com/example/demo/utils/JwtService.java
- com.example.demo.utils.JwtService
+com/example/demo/src/dto/request/PostNovelReq.java
+ com.example.demo.src.dto.request.PostNovelReq
+ com.example.demo.src.dto.request.PostNovelReq$PostNovelReqBuilder
+com/example/demo/src/repository/KeywordRepository.java
+ com.example.demo.src.repository.KeywordRepository
+com/example/demo/src/service/NovelService.java
+ com.example.demo.src.service.NovelService
+com/example/demo/src/controller/NovelController.java
+ com.example.demo.src.controller.NovelController

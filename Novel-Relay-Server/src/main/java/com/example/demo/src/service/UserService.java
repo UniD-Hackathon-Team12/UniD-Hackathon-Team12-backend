@@ -61,7 +61,6 @@ public class UserService {
                     .build();
             USER saveuser = userRepository.save(saved);
             //jwt 발급.
-            // TODO: jwt는 다음주차에서 배울 내용입니다!
 
             String jwt = jwtService.createJwt(saveuser.getUser_id());
             return new PostSignUpRes(saveuser.getUser_id(),jwt);
