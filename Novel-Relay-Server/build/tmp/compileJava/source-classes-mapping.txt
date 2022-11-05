@@ -49,12 +49,12 @@ com/example/demo/src/dto/request/PostSignUpReq.java
  com.example.demo.src.dto.request.PostSignUpReq$PostSignUpReqBuilder
 com/example/demo/config/BaseResponse.java
  com.example.demo.config.BaseResponse
-com/example/demo/src/dto/request/PostSigninReq.java
- com.example.demo.src.dto.request.PostSigninReq
- com.example.demo.src.dto.request.PostSigninReq$PostSigninReqBuilder
 com/example/demo/src/entity/USER.java
  com.example.demo.src.entity.USER
  com.example.demo.src.entity.USER$USERBuilder
+com/example/demo/src/dto/request/PostSigninReq.java
+ com.example.demo.src.dto.request.PostSigninReq
+ com.example.demo.src.dto.request.PostSigninReq$PostSigninReqBuilder
 com/example/demo/src/dto/response/GetNovelIdRes.java
  com.example.demo.src.dto.response.GetNovelIdRes
  com.example.demo.src.dto.response.GetNovelIdRes$GetNovelIdResBuilder

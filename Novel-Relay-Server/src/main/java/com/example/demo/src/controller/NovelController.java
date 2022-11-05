@@ -23,7 +23,10 @@ public class NovelController {
     }
 
     @GetMapping("/{novel_id}")
-    public BaseResponse<List<RELAY>> getRelayGroup(Long novel_id)
+    public BaseResponse<List<RELAY>> getRelayGroup(Long novel_id) throws BaseException {
+        List<RELAY> getNovelIdRes = novelService.getRelayGroup(novel_id);
+        return new BaseResponse<>(getNovelIdRes);
+    }
 
 
 }
