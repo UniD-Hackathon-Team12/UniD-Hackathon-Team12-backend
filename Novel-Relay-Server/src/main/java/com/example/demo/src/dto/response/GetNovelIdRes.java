@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class GetNovelidRes {
+public class GetNovelIdRes {
 
 
 }
