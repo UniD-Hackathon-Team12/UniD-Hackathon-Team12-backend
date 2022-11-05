@@ -1,52 +1,68 @@
 com/example/demo/utils/SHA256.java
  com.example.demo.utils.SHA256
-com/example/demo/src/dto/response/PostSignUpRes.java
- com.example.demo.src.dto.response.PostSignUpRes
- com.example.demo.src.dto.response.PostSignUpRes$PostSignUpResBuilder
 com/example/demo/config/Constant.java
  com.example.demo.config.Constant
-com/example/demo/src/repository/UserRepository.java
- com.example.demo.src.repository.UserRepository
-com/example/demo/src/entity/NOVEL.java
- com.example.demo.src.entity.NOVEL
- com.example.demo.src.entity.NOVEL$NOVELBuilder
-com/example/demo/config/secret/Secret.java
- com.example.demo.config.secret.Secret
-com/example/demo/src/entity/KEYWORDRANK.java
- com.example.demo.src.entity.KEYWORDRANK
- com.example.demo.src.entity.KEYWORDRANK$KEYWORDRANKBuilder
 com/example/demo/src/entity/BaseTimeEntity.java
  com.example.demo.src.entity.BaseTimeEntity
 com/example/demo/utils/ValidationRegex.java
  com.example.demo.utils.ValidationRegex
-com/example/demo/src/dto/request/PostSignUpReq.java
- com.example.demo.src.dto.request.PostSignUpReq
- com.example.demo.src.dto.request.PostSignUpReq$PostSignUpReqBuilder
-com/example/demo/config/BaseResponse.java
- com.example.demo.config.BaseResponse
-com/example/demo/src/entity/USER.java
- com.example.demo.src.entity.USER
- com.example.demo.src.entity.USER$USERBuilder
-com/example/demo/utils/JwtService.java
- com.example.demo.utils.JwtService
+com/example/demo/src/dto/request/GetRankReq.java
+ com.example.demo.src.dto.request.GetRankReq
+ com.example.demo.src.dto.request.GetRankReq$GetRankReqBuilder
+com/example/demo/src/service/UserService.java
+ com.example.demo.src.service.UserService
 com/example/demo/config/BaseResponseStatus.java
  com.example.demo.config.BaseResponseStatus
 com/example/demo/src/entity/KEYWORD.java
  com.example.demo.src.entity.KEYWORD
  com.example.demo.src.entity.KEYWORD$KEYWORDBuilder
+com/example/demo/src/dto/response/GetRankRes.java
+ com.example.demo.src.dto.response.GetRankRes
+ com.example.demo.src.dto.response.GetRankRes$GetRankResBuilder
+com/example/demo/src/controller/UserController.java
+ com.example.demo.src.controller.UserController
+com/example/demo/src/controller/KeywordController.java
+ com.example.demo.src.controller.KeywordController
+com/example/demo/src/WebSecurityConfig.java
+ com.example.demo.src.WebSecurityConfig
 com/example/demo/src/entity/RELAY.java
  com.example.demo.src.entity.RELAY
  com.example.demo.src.entity.RELAY$RELAYBuilder
+com/example/demo/src/service/KeywordRankService.java
+ com.example.demo.src.service.KeywordRankService
+com/example/demo/src/repository/KeywordRankRepository.java
+ com.example.demo.src.repository.KeywordRankRepository
+com/example/demo/src/dto/response/PostSignUpRes.java
+ com.example.demo.src.dto.response.PostSignUpRes
+ com.example.demo.src.dto.response.PostSignUpRes$PostSignUpResBuilder
+com/example/demo/src/entity/NOVEL.java
+ com.example.demo.src.entity.NOVEL
+ com.example.demo.src.entity.NOVEL$NOVELBuilder
+com/example/demo/src/repository/UserRepository.java
+ com.example.demo.src.repository.UserRepository
+com/example/demo/config/secret/Secret.java
+ com.example.demo.config.secret.Secret
+com/example/demo/src/entity/KEYWORDRANK.java
+ com.example.demo.src.entity.KEYWORDRANK
+ com.example.demo.src.entity.KEYWORDRANK$KEYWORDRANKBuilder
+com/example/demo/src/dto/request/PostSignUpReq.java
+ com.example.demo.src.dto.request.PostSignUpReq
+ com.example.demo.src.dto.request.PostSignUpReq$PostSignUpReqBuilder
+com/example/demo/config/BaseResponse.java
+ com.example.demo.config.BaseResponse
+com/example/demo/src/repository/KeywordRepository.java
+ com.example.demo.src.repository.KeywordRepository
+com/example/demo/src/entity/USER.java
+ com.example.demo.src.entity.USER
+ com.example.demo.src.entity.USER$USERBuilder
+com/example/demo/src/service/KeywordService.java
+ com.example.demo.src.service.KeywordService
 com/example/demo/config/BaseException.java
  com.example.demo.config.BaseException
 com/example/demo/DemoApplication.java
  com.example.demo.DemoApplication
-com/example/demo/src/WebSecurityConfig.java
- com.example.demo.src.WebSecurityConfig
 com/example/demo/src/entity/LIKEINFO.java
  com.example.demo.src.entity.LIKEINFO
  com.example.demo.src.entity.LIKEINFO$LIKEINFOBuilder
-com/example/demo/src/controller/UserController.java
- com.example.demo.src.controller.UserController
-com/example/demo/src/service/UserService.java
- com.example.demo.src.service.UserService
+com/example/demo/utils/JwtService.java
+ com.example.demo.utils.JwtService
