@@ -2,10 +2,8 @@ package com.example.demo.src.service;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.src.dto.request.GetNovelIdReq;
-import com.example.demo.src.dto.response.GetCategoryRes;
+import com.example.demo.src.dto.response.*;
 import com.example.demo.src.dto.request.PostRelayReq;
-import com.example.demo.src.dto.response.GetNovelIdRes;
-import com.example.demo.src.dto.response.PostRelayRes;
 import com.example.demo.src.dto.request.PostNovelReq;
 import com.example.demo.src.dto.response.GetNovelIdRes;
 import com.example.demo.src.entity.KEYWORD;
@@ -41,6 +39,28 @@ public class NovelService {
         this.novelRepository = novelRepository;
         this.relayRepository = relayRepository;
         this.userRepository = userRepository;
+    }
+
+    public List<GetAllRes> getAllGroup() {
+        List<NOVEL> novelGroup = novelRepository.findByAll();
+        List<GetAllRes> getAllList = new ArrayList<>();
+
+        for (NOVEL novel: novelGroup) {
+
+            GetAllRes getAllRes = GetAllRes.builder()
+                    .novel_id(novel.getNovel_id())
+                    .category(novel.getCategory())
+                    .max_num(novel.getMax_num())
+                    .n_content(novel.getN_content())
+                    .like_count(novel.getLike_count())
+                    .relay_count(novel.getRelay_count())
+                    .active(novel.isActive())
+                    .build();
+            getAllList.add(getAllRes);
+        }
+        return getAllList;
+
+
     }
 
     public List<GetNovelIdRes> getRelayGroup(Long novel_id) throws BaseException {
