@@ -27,9 +27,10 @@ public class NOVEL extends BaseTimeEntity {
 
     private String n_content;
 
-    private Long like_count;
-
-    private Long relay_count;
+    @Builder.Default
+    private Long like_count = 0L;
+    @Builder.Default
+    private Long relay_count = 0L;
 
     @Builder.Default
     private boolean active = true;
