@@ -33,4 +33,10 @@ public interface NovelRepository extends JpaRepository<NOVEL, Long>{
             "   from LIKEINFO l" +
             "   where l.user.user_id = :user_id)")
     List<NOVEL> findByUserIdInLike(Long user_id);
+
+    @Query ("select n "+
+            "from NOVEL n " +
+            "where n.category = :category")
+    List<NOVEL> findByCateInGroup(String category);
+
 }
