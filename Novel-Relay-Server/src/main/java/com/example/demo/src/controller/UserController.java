@@ -1,6 +1,7 @@
 package com.example.demo.src.controller;
 
 
+import com.example.demo.config.BaseException;
 import com.example.demo.config.BaseResponse;
 import com.example.demo.src.dto.request.PostSignUpReq;
 import com.example.demo.src.dto.response.PostSignUpRes;
@@ -21,12 +22,13 @@ public class UserController {
         this.userService = userService;
     }
 
-//    @PostMapping("/signup")
-//    @ResponseBody
-//    public BaseResponse<PostSignUpRes> signup(@RequestBody PostSignUpReq postSignUpReq){
-//
-//
-//    }
+    @PostMapping("/signup")
+    @ResponseBody
+    public BaseResponse<PostSignUpRes> signup(@RequestBody PostSignUpReq postSignUpReq) throws BaseException {
+        PostSignUpRes postSignUpRes = userService.signup(postSignUpReq);
+
+        return new BaseResponse<>(postSignUpRes);
 
 
+    }
 }
