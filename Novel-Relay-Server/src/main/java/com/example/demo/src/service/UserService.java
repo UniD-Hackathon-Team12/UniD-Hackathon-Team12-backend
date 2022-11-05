@@ -4,15 +4,23 @@ package com.example.demo.src.service;
 import com.example.demo.config.BaseException;
 import com.example.demo.src.dto.request.PostSignUpReq;
 import com.example.demo.src.dto.request.PostSigninReq;
+import com.example.demo.src.dto.response.GetMyPageRes;
+import com.example.demo.src.dto.response.GetNovelIdRes;
 import com.example.demo.src.dto.response.PostSignUpRes;
 import com.example.demo.src.dto.response.PostSigninRes;
+import com.example.demo.src.entity.NOVEL;
+import com.example.demo.src.entity.RELAY;
 import com.example.demo.src.entity.USER;
+import com.example.demo.src.repository.NovelRepository;
 import com.example.demo.src.repository.UserRepository;
 import com.example.demo.utils.JwtService;
 import com.example.demo.utils.SHA256;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.demo.config.BaseResponseStatus.*;
 
@@ -23,12 +31,14 @@ public class UserService {
 
 
     private UserRepository userRepository;
+    private NovelRepository novelRepository;
     private JwtService jwtService;
 
     @Autowired
-    public UserService(UserRepository userRepository, JwtService jwtService)
+    public UserService(UserRepository userRepository, NovelRepository novelRepository, JwtService jwtService)
     {
         this.userRepository = userRepository;
+        this.novelRepository = novelRepository;
         this.jwtService = jwtService;
     }
 
@@ -115,7 +125,78 @@ public class UserService {
 
     }
 
+    public List<List> getMyNovelGroup(Long user_id) throws BaseException {
+
+        List<NOVEL> writeNovelGroup = novelRepository.findByUserIdInWrite(user_id);
+        List<GetMyPageRes> getWriteNovelList = new ArrayList<>();
+
+        if (writeNovelGroup.isEmpty()) {
+
+        } else {
+            for (NOVEL writeNovel: writeNovelGroup) {
+
+                GetMyPageRes getMyPageRes = GetMyPageRes.builder()
+                        .novel_id(writeNovel.getNovel_id())
+                        .category(writeNovel.getCategory())
+                        .max_num(writeNovel.getMax_num())
+                        .n_content(writeNovel.getN_content())
+                        .like_count(writeNovel.getLike_count())
+                        .relay_count(writeNovel.getRelay_count())
+                        .active(writeNovel.isActive())
+                        .build();
+                getWriteNovelList.add(getMyPageRes);
+            }
+        }
 
 
+        List<NOVEL> participateNovelGroup = novelRepository.findByUserIdInParticipate(user_id);
+        List<GetMyPageRes> getParticipateNovelList = new ArrayList<>();
+
+        if (participateNovelGroup.isEmpty()) {
+
+        } else {
+            for (NOVEL participateNovel: participateNovelGroup) {
+
+                GetMyPageRes getMyPageRes = GetMyPageRes.builder()
+                        .novel_id(participateNovel.getNovel_id())
+                        .category(participateNovel.getCategory())
+                        .max_num(participateNovel.getMax_num())
+                        .n_content(participateNovel.getN_content())
+                        .like_count(participateNovel.getLike_count())
+                        .relay_count(participateNovel.getRelay_count())
+                        .active(participateNovel.isActive())
+                        .build();
+                getParticipateNovelList.add(getMyPageRes);
+            }
+        }
+
+        List<NOVEL> likeNovelGroup = novelRepository.findByUserIdInLike(user_id);
+        List<GetMyPageRes> getLikeNovelList = new ArrayList<>();
+
+        if (likeNovelGroup.isEmpty()) {
+
+        } else {
+            for (NOVEL likeNovel: likeNovelGroup) {
+
+                GetMyPageRes getMyPageRes = GetMyPageRes.builder()
+                        .novel_id(likeNovel.getNovel_id())
+                        .category(likeNovel.getCategory())
+                        .max_num(likeNovel.getMax_num())
+                        .n_content(likeNovel.getN_content())
+                        .like_count(likeNovel.getLike_count())
+                        .relay_count(likeNovel.getRelay_count())
+                        .active(likeNovel.isActive())
+                        .build();
+                getLikeNovelList.add(getMyPageRes);
+            }
+        }
+
+        List<List> myPageList = new ArrayList<>();
+        myPageList.add(getWriteNovelList);
+        myPageList.add(getParticipateNovelList);
+        myPageList.add(getLikeNovelList);
+
+        return  myPageList;
+    }
 
 }
