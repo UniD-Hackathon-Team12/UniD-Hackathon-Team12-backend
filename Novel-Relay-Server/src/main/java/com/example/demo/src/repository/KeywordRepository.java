@@ -11,16 +11,16 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface KeywordRepository extends JpaRepository<KEYWORD, Long> {
 
-    @Query("select count(k) " +
+    @Query("select k " +
             "from KEYWORD k " +
-            "where keyword = :keyword ")
-    Integer findFreq(@Param("keyword")String keyword);
+            "where k.keyword = :keyword and k.novel.novel_id = :novel_id")
+    KEYWORD findFreq(@Param("keyword")String keyword, @Param("novel_id")Long novel_id);
 
     @Modifying(clearAutomatically = true)
     @Query(value = "update KEYWORD k " +
             "set k.freq_cnt = :freq " +
-            "where k.keyword = :keyword ",nativeQuery = true )
-    Integer updateFreq(@Param("freq")Integer freq,@Param("keyword")String keyword);
+            "where k.keyword = :keyword and and k.novel_id = :novel_id ",nativeQuery = true )
+    Integer updateFreq(@Param("freq")Integer freq,@Param("keyword")String keyword, @Param("novel_id")Long novel_id);
 
 
 }

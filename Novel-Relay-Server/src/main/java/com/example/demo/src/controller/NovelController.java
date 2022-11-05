@@ -3,11 +3,13 @@ package com.example.demo.src.controller;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.config.BaseResponse;
+import com.example.demo.src.dto.request.PatchKeywordReq;
 import com.example.demo.src.dto.response.*;
 import com.example.demo.src.dto.request.PostRelayReq;
 import com.example.demo.src.dto.request.PostSignUpReq;
 import com.example.demo.src.dto.request.PostNovelReq;
 import com.example.demo.src.entity.RELAY;
+import com.example.demo.src.service.KeywordService;
 import com.example.demo.src.service.NovelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +21,12 @@ import java.util.List;
 public class NovelController {
 
     private final NovelService novelService;
+    private final KeywordService keywordService;
 
     @Autowired
-    public NovelController(NovelService novelService) {
+    public NovelController(NovelService novelService, KeywordService keywordService) {
         this.novelService = novelService;
+        this.keywordService = keywordService;
     }
 
     @GetMapping("/{novel_id}")
@@ -54,7 +58,14 @@ public class NovelController {
         PostRelayRes postRelayRes = novelService.postRelay(postRelayReq);
 
         return new BaseResponse<>(postRelayRes);
+    }
 
+    @PatchMapping("/{novel_id}/keyword")
+    @ResponseBody
+    public BaseResponse<PatchKeywordRes> addKeyword(@PathVariable Long novel_id, @RequestBody PatchKeywordReq patchKeywordReq) throws BaseException {
+        PatchKeywordRes patchKeywordRes = keywordService.addKeyword(novel_id, patchKeywordReq);
+
+        return new BaseResponse<>(patchKeywordRes);
     }
 
     @GetMapping("/all")
@@ -62,6 +73,4 @@ public class NovelController {
         List<GetAllRes> allgroup =  novelService.getAllGroup();
         return new BaseResponse<>(allgroup);
     }
-
-
 }
