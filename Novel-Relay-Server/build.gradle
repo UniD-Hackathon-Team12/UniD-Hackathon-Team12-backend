@@ -1,6 +1,8 @@
 plugins {
     id 'org.springframework.boot' version '2.4.2'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    //querydsl 추가
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
     id 'java'
 }
 
@@ -42,6 +44,9 @@ dependencies {
 
 
 
+    //querydsl 추가
+    implementation 'com.querydsl:querydsl-jpa'
+
     // Web
     implementation ('org.springframework.boot:spring-boot-starter-web')
 
@@ -61,4 +66,20 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+//querydsl 시작
+def querydslDir = "$buildDir/generated/querydsl"
+querydsl {
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+sourceSets {
+    main.java.srcDir querydslDir
+}
+configurations {
+    querydsl.extendsFrom compileClasspath
+}
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
 }

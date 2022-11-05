@@ -23,4 +23,5 @@ public interface KeywordRepository extends JpaRepository<KEYWORD, Long> {
     Integer updateFreq(@Param("freq")Integer freq,@Param("keyword")String keyword);
 
 
+
 }
