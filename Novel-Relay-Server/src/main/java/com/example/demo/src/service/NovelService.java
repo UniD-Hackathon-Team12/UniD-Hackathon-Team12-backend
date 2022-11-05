@@ -5,7 +5,6 @@ import com.example.demo.src.dto.request.PostSignUpReq;
 import com.example.demo.src.dto.response.PostSignUpRes;
 import com.example.demo.src.entity.NOVEL;
 import com.example.demo.src.repository.NovelRepository;
-import com.example.demo.src.repository.UserRepository;
 import com.example.demo.utils.SHA256;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
