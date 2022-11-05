@@ -24,7 +24,7 @@ public class LIKEINFO {
 
 
     @Builder.Default
-    private boolean likeinfo = true;
+    private boolean likeinfo_active = true;
 
 
     @ManyToOne(fetch = LAZY) // N:1 단방향

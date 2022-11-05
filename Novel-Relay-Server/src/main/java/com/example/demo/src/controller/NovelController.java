@@ -8,6 +8,14 @@ import com.example.demo.src.dto.response.*;
 import com.example.demo.src.dto.request.PostRelayReq;
 import com.example.demo.src.dto.request.PostSignUpReq;
 import com.example.demo.src.dto.request.PostNovelReq;
+import com.example.demo.src.dto.response.GetNovelIdRes;
+import com.example.demo.src.dto.response.PostRelayRes;
+import com.example.demo.src.dto.response.PostSignUpRes;
+import com.example.demo.src.dto.request.GetNovelListSearchReq;
+import com.example.demo.src.dto.request.PatchLikeReq;
+import com.example.demo.src.dto.request.PostNovelReq;
+import com.example.demo.src.dto.response.GetNovelIdRes;
+import com.example.demo.src.dto.response.GetNovelListSearchRes;
 import com.example.demo.src.entity.RELAY;
 import com.example.demo.src.service.KeywordService;
 import com.example.demo.src.service.NovelService;
@@ -15,6 +23,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static com.example.demo.config.BaseResponseStatus.DATABASE_ERROR;
+import static com.example.demo.config.BaseResponseStatus.INVALID_KEYWORD;
 
 @RestController
 @RequestMapping("/novel")
@@ -50,6 +61,48 @@ public class NovelController {
         List<GetCategoryRes> cateNovelList = novelService.getCateNovelGroup(category);
         return new BaseResponse<>(cateNovelList);
     }
+    //keyword 검색
+    @GetMapping("/keyword/search/{keyword}")
+    @ResponseBody
+    public BaseResponse<List<String>> searchKEYWORDS(@PathVariable String keyword){
+        System.out.println("와?");
+//        if(keyword.charAt(0) != '#'){
+//            return new BaseResponse<>(INVALID_KEYWORD);
+//        }
+//        keyword = keyword.substring(1);
+//        System.out.println("검색어  : "+ keyword);
+        List<String> result = novelService.searchKEYWORDS(keyword);
+
+        return new BaseResponse<>(result);
+
+    }
+
+    //n_content 검색
+    @GetMapping("/{type}/search")
+    @ResponseBody
+    public BaseResponse<List<GetNovelListSearchRes>> searchNOVELLIST(@PathVariable Integer type, @RequestBody GetNovelListSearchReq getNovelListSearchReq){
+        System.out.println("start"+getNovelListSearchReq.getR_content());
+        List<GetNovelListSearchRes> result = novelService.searchNOVELLIST(type, getNovelListSearchReq);
+        return new BaseResponse<>(result);
+    }
+
+
+    @PatchMapping("{novel_id}/like")
+    @ResponseBody
+    public BaseResponse<Long> PatchLike(@PathVariable("novel_id") Long novel_id, @RequestBody PatchLikeReq patchLikeReq) throws BaseException {
+
+        System.out.println(">>>>>>>>novelid " + novel_id);
+        System.out.println(patchLikeReq.getUser_id());
+        System.out.println(patchLikeReq.isActive());
+        Long result = novelService.PatchLike(novel_id,patchLikeReq);
+        if(result != 200L){
+            return new BaseResponse<>(DATABASE_ERROR);
+        }
+
+        return new BaseResponse<>(result);
+
+    }
+
 
 
     @PostMapping("/{novel_id}/relay")
