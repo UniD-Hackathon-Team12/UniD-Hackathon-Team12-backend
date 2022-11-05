@@ -8,8 +8,6 @@ import org.jetbrains.annotations.NotNull;
 @NoArgsConstructor
 @Setter
 @Getter
-public class GetNovelIdReq {
-
-    @NotNull
+public class GetMyPageReq {
     private Long user_id;
 }
