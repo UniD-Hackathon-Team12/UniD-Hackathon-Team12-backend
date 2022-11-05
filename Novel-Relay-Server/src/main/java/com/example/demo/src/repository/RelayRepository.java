@@ -10,4 +10,10 @@ import java.util.ArrayList;
 
 public interface RelayRepository extends JpaRepository<RELAY, Long>{
 
+    @Query ("select r " +
+            "from RELAY r " +
+            "where r.novel.novel_id = :novel_id")
+    ArrayList<RELAY> findByNovelIdInGroup(Long novel_id);
+
 }
+

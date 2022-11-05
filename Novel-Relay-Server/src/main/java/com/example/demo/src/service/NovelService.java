@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.demo.config.BaseResponseStatus.*;
@@ -30,15 +31,16 @@ public class NovelService {
         this.relayRepository = relayRepository;
     }
 
-//    public List<RELAY> getRelay(Long novel_id) throws BaseException {
-//
-////        try{
-////            RELAY relay = relayRepository.findByNovelId(novel_id);
-////            return ;
-////        } catch (Exception e) {
-////            e.printStackTrace();
-////        }
-//
-//    }
+    public List<RELAY> getRelayGroup(Long novel_id) throws BaseException {
+
+        try{
+            ArrayList<RELAY> relayGroup = relayRepository.findByNovelIdInGroup(novel_id);
+            return relayGroup;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
 }
