@@ -1,9 +1,12 @@
 package com.example.demo.src.service;
 
 import com.example.demo.config.BaseException;
+import com.example.demo.config.BaseResponse;
 import com.example.demo.src.dto.request.GetNovelIdReq;
+import com.example.demo.src.dto.request.GetNovelListSearchReq;
 import com.example.demo.src.dto.request.PostNovelReq;
 import com.example.demo.src.dto.response.GetNovelIdRes;
+import com.example.demo.src.dto.response.GetNovelListSearchRes;
 import com.example.demo.src.entity.KEYWORD;
 import com.example.demo.src.entity.NOVEL;
 import com.example.demo.src.entity.RELAY;
@@ -15,6 +18,7 @@ import com.example.demo.utils.SHA256;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,4 +121,20 @@ public class NovelService {
 
     }
 
-}
+    public List<String> searchKEYWORDS(String keyword){
+        List<String> result = novelRepository.searchKEYWORDS(keyword);
+
+        System.out.println("확인 : "+ result.toString());
+        return result;
+
+    }
+
+    public List<GetNovelListSearchRes> searchNOVELLIST(@PathVariable Integer type, GetNovelListSearchReq getNovelListSearchReq){
+        List<GetNovelListSearchRes> result = novelRepository.searchNovelList(type, getNovelListSearchReq);
+
+        return result;
+
+    }
+
+
+    }
