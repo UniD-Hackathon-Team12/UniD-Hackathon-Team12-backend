@@ -45,11 +45,13 @@ public class LikeInfoService {
                     .novel(novelRepository.getOne(novel_id))
                     .build();
             LIKEINFO saved = likeInfoRepository.save(new_likeinfo);
+            System.out.println("저장되었다. " + saved.toString());
             return saved;
         }catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);
         }
     }
+
 
     public Integer changeActive(boolean likeinfo_active, Long user_id, Long novel_id){
         Integer check = likeInfoRepository.changeActive(likeinfo_active,user_id,novel_id);

@@ -74,6 +74,7 @@ public class NovelController {
     @ResponseBody
     public BaseResponse<Long> PatchLike(@PathVariable("novelid") Long novel_id, @RequestBody PatchLikeReq patchLikeReq) throws BaseException {
 
+        System.out.println(novel_id + patchLikeReq.toString());
         Long result = novelService.PatchLike(novel_id,patchLikeReq);
         if(result != 200L){
             return new BaseResponse<>(DATABASE_ERROR);

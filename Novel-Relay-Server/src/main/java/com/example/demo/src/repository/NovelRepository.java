@@ -19,5 +19,11 @@ public interface NovelRepository extends JpaRepository<NOVEL, Long>, NovelReposi
     Integer updateLikeCnt(@Param("like_count")Long like_count, @Param("novel_id")Long novel_id);
 
 
+    @Query("select n.like_count " +
+            "from NOVEL n " +
+            "where n.novel_id = :novel_id")
+    Long findLikeCnt(@Param("novel_id")Long novel_id);
+
+
 
 }

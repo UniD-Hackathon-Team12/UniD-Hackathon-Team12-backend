@@ -20,6 +20,16 @@ public interface LikeInfoRepository extends JpaRepository<LIKEINFO, Long> {
     @Modifying(clearAutomatically = true)
     @Query(value = "update LIKEINFO l " +
             "set l.likeinfo_active = :likeinfo_active " +
-            "where l.user.user_id = :user_id and l.novel.novel_id = :novel_id  ",nativeQuery = true )
+            "where l.user_id = :user_id and l.novel_id = :novel_id  ",nativeQuery = true )
     Integer changeActive(@Param("likeinfo_active") boolean likeinfo_active, @Param("user_id")Long user_id, @Param("novel_id")Long novel_id);
+
+
+
+
+
+
+
+
+
+
 }

@@ -146,7 +146,6 @@ public class NovelService {
     }
 
     public Long PatchLike(Long novel_id, PatchLikeReq patchLikeReq) throws BaseException {
-        Long cnt = 0L;
 
         if(patchLikeReq.isActive() == true){ //좋아요 활성화
             //처음이냐 있는지... 그럼 만들어야됨......
@@ -165,6 +164,7 @@ public class NovelService {
             }
 
             //좋아요 눌러서 cnt + 1 됨.
+            Long cnt = novelRepository.findLikeCnt(novel_id);
             Integer check2 = changeLikeCount(cnt+1L, novel_id);
             if(check2 == 0){//제대로 안바뀜.
                 throw new BaseException(DATABASE_ERROR);
@@ -179,6 +179,7 @@ public class NovelService {
             }
 
             //좋아요 비활성화 눌러서 cnt - 1 됨.
+            Long cnt = novelRepository.findLikeCnt(novel_id);
             Integer check3 = changeLikeCount(cnt-1L, novel_id);
             if(check3 == 0){//제대로 안바뀜.
                 throw new BaseException(DATABASE_ERROR);
