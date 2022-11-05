@@ -9,8 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NovelRepository extends JpaRepository<NOVEL, Long>{
 
-    NOVEL findByNovelId(Long novel_id);
-
-//    RELAY findByNovelId(Long novel_id);
 
 }
