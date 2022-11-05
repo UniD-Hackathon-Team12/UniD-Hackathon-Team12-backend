@@ -4,6 +4,7 @@ package com.example.demo.src.controller;
 import com.example.demo.config.BaseException;
 import com.example.demo.config.BaseResponse;
 import com.example.demo.src.dto.request.GetNovelListSearchReq;
+import com.example.demo.src.dto.request.PatchLikeReq;
 import com.example.demo.src.dto.request.PostNovelReq;
 import com.example.demo.src.dto.response.GetNovelIdRes;
 import com.example.demo.src.dto.response.GetNovelListSearchRes;
@@ -13,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static com.example.demo.config.BaseResponseStatus.DATABASE_ERROR;
+import static com.example.demo.config.BaseResponseStatus.INVALID_KEYWORD;
 
 @RestController
 @RequestMapping("/novel")
@@ -44,6 +48,12 @@ public class NovelController {
     @GetMapping("/keyword/search/{keyword}")
     @ResponseBody
     public BaseResponse<List<String>> searchKEYWORDS(@PathVariable String keyword){
+        System.out.println("와?");
+//        if(keyword.charAt(0) != '#'){
+//            return new BaseResponse<>(INVALID_KEYWORD);
+//        }
+//        keyword = keyword.substring(1);
+//        System.out.println("검색어  : "+ keyword);
         List<String> result = novelService.searchKEYWORDS(keyword);
 
         return new BaseResponse<>(result);
@@ -59,6 +69,19 @@ public class NovelController {
         return new BaseResponse<>(result);
     }
 
+
+    @PatchMapping("{novelid}/like")
+    @ResponseBody
+    public BaseResponse<Long> PatchLike(@PathVariable("novelid") Long novel_id, @RequestBody PatchLikeReq patchLikeReq) throws BaseException {
+
+        Long result = novelService.PatchLike(novel_id,patchLikeReq);
+        if(result != 200L){
+            return new BaseResponse<>(DATABASE_ERROR);
+        }
+
+        return new BaseResponse<>(result);
+
+    }
 
 
 
