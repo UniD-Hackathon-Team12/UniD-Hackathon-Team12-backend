@@ -31,16 +31,26 @@ public class NovelService {
         this.relayRepository = relayRepository;
     }
 
-    public List<RELAY> getRelayGroup(Long novel_id) throws BaseException {
+    public List<GetNovelIdRes> getRelayGroup(Long novel_id) throws BaseException {
 
-        try{
-            ArrayList<RELAY> relayGroup = relayRepository.findByNovelIdInGroup(novel_id);
-            return relayGroup;
-        } catch (Exception e) {
-            e.printStackTrace();
+        List<RELAY> relayGroup = relayRepository.findByNovelIdInGroup(novel_id);
+
+        if (relayGroup.isEmpty()) {
+//            throw new BaseException();
         }
+        List<GetNovelIdRes> getNovelIdResList = new ArrayList<>();
 
-        return null;
+        for (RELAY relay: relayGroup) {
+
+            GetNovelIdRes getNovelIdRes = GetNovelIdRes.builder()
+                    .relay_id(relay.getRelay_id())
+                    .novel_id(relay.getNovel().getNovel_id())
+                    .r_content(relay.getR_content())
+                    .user_id(relay.getUser().getUser_id())
+                    .build();
+            getNovelIdResList.add(getNovelIdRes);
+        }
+        return getNovelIdResList;
     }
 
 }
