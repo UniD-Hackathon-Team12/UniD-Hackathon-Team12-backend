@@ -6,11 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface NovelRepository extends JpaRepository<NOVEL, Long>{
+import java.util.ArrayList;
 
-    NOVEL findByNovelId(Long novel_id);
+public interface RelayRepository extends JpaRepository<RELAY, Long>{
 
-//    RELAY findByNovelId(Long novel_id);
+    ArrayList<RELAY> findByNovelIdInGroup(Long novel_id);
 
 }
