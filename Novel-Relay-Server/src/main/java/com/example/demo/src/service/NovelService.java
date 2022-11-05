@@ -5,8 +5,12 @@ import com.example.demo.src.dto.request.GetNovelIdReq;
 import com.example.demo.src.dto.request.PostRelayReq;
 import com.example.demo.src.dto.response.GetNovelIdRes;
 import com.example.demo.src.dto.response.PostRelayRes;
+import com.example.demo.src.dto.request.PostNovelReq;
+import com.example.demo.src.dto.response.GetNovelIdRes;
+import com.example.demo.src.entity.KEYWORD;
 import com.example.demo.src.entity.NOVEL;
 import com.example.demo.src.entity.RELAY;
+import com.example.demo.src.repository.KeywordRepository;
 import com.example.demo.src.repository.NovelRepository;
 import com.example.demo.src.repository.RelayRepository;
 import com.example.demo.src.repository.UserRepository;
@@ -28,10 +32,11 @@ public class NovelService {
     private NovelRepository novelRepository;
     private RelayRepository relayRepository;
     private UserRepository userRepository;
+    private KeywordRepository keywordRepository;
 
     @Autowired
-    public NovelService(NovelRepository novelRepository, RelayRepository relayRepository, UserRepository userRepository) {
-
+    public NovelService(KeywordRepository keywordRepository, NovelRepository novelRepository, RelayRepository relayRepository, UserRepository userRepository) {
+        this.keywordRepository = keywordRepository;
         this.novelRepository = novelRepository;
         this.relayRepository = relayRepository;
         this.userRepository = userRepository;
@@ -39,7 +44,7 @@ public class NovelService {
 
     public List<RELAY> getRelayGroup(Long novel_id) throws BaseException {
 
-        try{
+        try {
             ArrayList<RELAY> relayGroup = relayRepository.findByNovelIdInGroup(novel_id);
             return relayGroup;
         } catch (Exception e) {
@@ -67,6 +72,70 @@ public class NovelService {
         } catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);
         }
+
+    public Long createNovel(String category, PostNovelReq postNovelReq) throws BaseException{
+        NOVEL newNovel = NOVEL.builder()
+                .category(category)
+                .max_num(postNovelReq.getMax_num())
+                .n_content(postNovelReq.getN_content())
+                .user(userRepository.getOne(postNovelReq.getUser_id()))
+                .build();
+
+
+        NOVEL saved = novelRepository.save(newNovel);
+
+        Long novel_id = saved.getNovel_id();
+
+        List<String> keywords = postNovelReq.getKeywords();
+        for(String keyword : keywords){
+            System.out.println(keyword);
+            //이거 나중에 추가하는거
+//            Integer freq = keywordRepository.findFreq(keyword);
+//            if(freq == 0){
+//                freq = 0;
+//                KEYWORD newKeyword = KEYWORD.builder()
+//                        .novel(novelRepository.getOne(novel_id))
+//                        .keyword(keyword)
+//                        .freq_cnt(freq)
+//                        .build();
+//
+//                KEYWORD savedkeyword = keywordRepository.save(newKeyword);
+//            }
+//            else{
+//                freq += 1;
+//                Integer new_freq = keywordRepository.updateFreq(freq,keyword);
+//                if(new_freq == 0){
+//                    System.out.println("error");
+//                }
+//                System.out.println("keyword 빈도 update");
+//
+//            }
+
+            KEYWORD newKeyword = KEYWORD.builder()
+                    .novel(novelRepository.getOne(novel_id))
+                    .keyword(keyword)
+                    .build();
+
+            KEYWORD savedkeyword = keywordRepository.save(newKeyword);
+
+
+        }
+
+        RELAY new_relay = RELAY.builder()
+                .r_content(saved.getN_content())
+                .novel(novelRepository.getOne(novel_id))
+                .user(userRepository.getOne(postNovelReq.getUser_id()))
+                .build();
+
+        RELAY savedRelay = relayRepository.save(new_relay);
+
+        if(savedRelay.getNovel().getNovel_id() != saved.getNovel_id()){
+            System.out.println("뭔가 잘못 됨");
+            throw new BaseException(DATABASE_ERROR);
+        }
+
+        return novel_id;
+
     }
 
 }
