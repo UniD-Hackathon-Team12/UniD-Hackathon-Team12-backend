@@ -3,6 +3,7 @@ package com.example.demo.src.controller;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.config.BaseResponse;
+import com.example.demo.src.dto.response.GetCategoryRes;
 import com.example.demo.src.dto.request.PostRelayReq;
 import com.example.demo.src.dto.request.PostSignUpReq;
 import com.example.demo.src.dto.request.PostNovelReq;
@@ -41,6 +42,12 @@ public class NovelController {
         Long novel_id = novelService.createNovel(category,postNovelReq);
 
         return new BaseResponse<>(novel_id);
+    }
+
+    @GetMapping("part/{category}")
+    public BaseResponse<List<GetCategoryRes>> getCateNovelGroup(@PathVariable String category) throws BaseException {
+        List<GetCategoryRes> cateNovelList = novelService.getCateNovelGroup(category);
+        return new BaseResponse<>(cateNovelList);
     }
 
 
