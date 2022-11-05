@@ -20,7 +20,7 @@ public interface NovelRepository extends JpaRepository<NOVEL, Long>{
 
     @Query ("select n " +
             "from NOVEL n " +
-            "where n.novel_id = " +
+            "where n.novel_id in " +
             "   (select r.novel.novel_id " +
             "   from RELAY r " +
             "   where r.user.user_id = :user_id)")
@@ -28,7 +28,7 @@ public interface NovelRepository extends JpaRepository<NOVEL, Long>{
 
     @Query ("select n " +
             "from NOVEL n " +
-            "where n.novel_id = " +
+            "where n.novel_id in " +
             "   (select l.novel.novel_id" +
             "   from LIKEINFO l" +
             "   where l.user.user_id = :user_id)")

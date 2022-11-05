@@ -46,8 +46,8 @@ public class UserController {
 
     }
 
-    @GetMapping("/mypage")
-    public BaseResponse<List<List>> getMyNovelGroup(Long user_id) throws BaseException{
+    @GetMapping("/mypage/{user_id}")
+    public BaseResponse<List<List>> getMyNovelGroup(@PathVariable Long user_id) throws BaseException{
         List<List> myNovelList = userService.getMyNovelGroup(user_id);
         return new BaseResponse<>(myNovelList);
     }
