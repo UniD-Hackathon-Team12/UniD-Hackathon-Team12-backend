@@ -35,7 +35,8 @@ public class UserService {
         // id 중복 확인
         try{
             USER user = userRepository.findByNickname(postSignUpReq.getNickname());
-            if(user.getNickname() == postSignUpReq.getNickname()){ //존재한다. 즉, 중복
+            if(postSignUpReq.getNickname().equals(user.getNickname())){ //존재한다. 즉, 중복
+
                 throw new BaseException(POST_USERS_EXISTS_EMAIL);
             }
         } catch (Exception e) {
