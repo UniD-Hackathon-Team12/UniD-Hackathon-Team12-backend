@@ -5,8 +5,9 @@ com/example/demo/src/dto/response/PostSignUpRes.java
  com.example.demo.src.dto.response.PostSignUpRes$PostSignUpResBuilder
 com/example/demo/config/Constant.java
  com.example.demo.config.Constant
-com/example/demo/src/repository/UserRepository.java
- com.example.demo.src.repository.UserRepository
+com/example/demo/src/entity/LIKEINFO.java
+ com.example.demo.src.entity.LIKEINFO
+ com.example.demo.src.entity.LIKEINFO$LIKEINFOBuilder
 com/example/demo/src/entity/NOVEL.java
  com.example.demo.src.entity.NOVEL
  com.example.demo.src.entity.NOVEL$NOVELBuilder
@@ -43,9 +44,13 @@ com/example/demo/DemoApplication.java
  com.example.demo.DemoApplication
 com/example/demo/src/WebSecurityConfig.java
  com.example.demo.src.WebSecurityConfig
-com/example/demo/src/entity/LIKEINFO.java
- com.example.demo.src.entity.LIKEINFO
- com.example.demo.src.entity.LIKEINFO$LIKEINFOBuilder
+com/example/demo/src/dto/response/PostSigninRes.java
+ com.example.demo.src.dto.response.PostSigninRes
+com/example/demo/src/dto/request/PostSigninReq.java
+ com.example.demo.src.dto.request.PostSigninReq
+ com.example.demo.src.dto.request.PostSigninReq$PostSigninReqBuilder
+com/example/demo/src/repository/UserRepository.java
+ com.example.demo.src.repository.UserRepository
 com/example/demo/src/controller/UserController.java
  com.example.demo.src.controller.UserController
 com/example/demo/src/service/UserService.java
