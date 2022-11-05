@@ -68,4 +68,9 @@ public class NovelController {
         return new BaseResponse<>(patchKeywordRes);
     }
 
+    @GetMapping("/all")
+    public BaseResponse<List<GetAllRes>> getAllGroup() throws BaseException {
+        List<GetAllRes> allgroup =  novelService.getAllGroup();
+        return new BaseResponse<>(allgroup);
+    }
 }

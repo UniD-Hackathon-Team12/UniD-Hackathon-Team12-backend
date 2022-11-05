@@ -8,6 +8,7 @@ import com.example.demo.src.dto.request.PostSigninReq;
 import com.example.demo.src.dto.response.GetNovelIdRes;
 import com.example.demo.src.dto.response.PostSignUpRes;
 import com.example.demo.src.dto.response.PostSigninRes;
+import com.example.demo.src.entity.USER;
 import com.example.demo.src.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,9 +47,10 @@ public class UserController {
 
     }
 
-    @GetMapping("/mypage/{user_id}")
-    public BaseResponse<List<List>> getMyNovelGroup(@PathVariable Long user_id) throws BaseException{
-        List<List> myNovelList = userService.getMyNovelGroup(user_id);
+    @GetMapping("/mypage")
+    public BaseResponse<List<List>> getMyNovelGroup() throws BaseException{
+
+        List<List> myNovelList = userService.getMyNovelGroup();
         return new BaseResponse<>(myNovelList);
     }
 }

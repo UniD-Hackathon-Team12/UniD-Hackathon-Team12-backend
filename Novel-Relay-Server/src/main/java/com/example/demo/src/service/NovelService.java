@@ -2,10 +2,8 @@ package com.example.demo.src.service;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.src.dto.request.GetNovelIdReq;
-import com.example.demo.src.dto.response.GetCategoryRes;
+import com.example.demo.src.dto.response.*;
 import com.example.demo.src.dto.request.PostRelayReq;
-import com.example.demo.src.dto.response.GetNovelIdRes;
-import com.example.demo.src.dto.response.PostRelayRes;
 import com.example.demo.src.dto.request.PostNovelReq;
 import com.example.demo.src.dto.response.GetNovelIdRes;
 import com.example.demo.src.entity.KEYWORD;
@@ -43,6 +41,28 @@ public class NovelService {
         this.userRepository = userRepository;
     }
 
+    public List<GetAllRes> getAllGroup() {
+        List<NOVEL> novelGroup = novelRepository.findByAll();
+        List<GetAllRes> getAllList = new ArrayList<>();
+
+        for (NOVEL novel: novelGroup) {
+
+            GetAllRes getAllRes = GetAllRes.builder()
+                    .novel_id(novel.getNovel_id())
+                    .category(novel.getCategory())
+                    .max_num(novel.getMax_num())
+                    .n_content(novel.getN_content())
+                    .like_count(novel.getLike_count())
+                    .relay_count(novel.getRelay_count())
+                    .active(novel.isActive())
+                    .build();
+            getAllList.add(getAllRes);
+        }
+        return getAllList;
+
+
+    }
+
     public List<GetNovelIdRes> getRelayGroup(Long novel_id) throws BaseException {
 
         List<RELAY> relayGroup = relayRepository.findByNovelIdInGroup(novel_id);
@@ -57,8 +77,14 @@ public class NovelService {
             GetNovelIdRes getNovelIdRes = GetNovelIdRes.builder()
                     .relay_id(relay.getRelay_id())
                     .novel_id(relay.getNovel().getNovel_id())
-                    .r_content(relay.getR_content())
                     .user_id(relay.getUser().getUser_id())
+                    .r_content(relay.getR_content())
+                    .category(relay.getNovel().getCategory())
+                    .max_num(relay.getNovel().getMax_num())
+                    .n_content(relay.getNovel().getN_content())
+                    .like_count(relay.getNovel().getLike_count())
+                    .relay_count(relay.getNovel().getRelay_count())
+                    .active(relay.getNovel().isActive())
                     .build();
             getNovelIdResList.add(getNovelIdRes);
         }

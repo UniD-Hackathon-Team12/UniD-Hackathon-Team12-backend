@@ -125,8 +125,9 @@ public class UserService {
 
     }
 
-    public List<List> getMyNovelGroup(Long user_id) throws BaseException {
+    public List<List> getMyNovelGroup() throws BaseException {
 
+        Long user_id = Long.valueOf(jwtService.getUserIdx());
         List<NOVEL> writeNovelGroup = novelRepository.findByUserIdInWrite(user_id);
         List<GetMyPageRes> getWriteNovelList = new ArrayList<>();
 
