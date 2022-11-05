@@ -11,10 +11,10 @@ import java.util.List;
 
 public interface RelayRepository extends JpaRepository<RELAY, Long>{
 
-    @Query ("select r, n " +
-            "from RELAY r, NOVEL n " +
-            "where r.novel.novel_id = :novel_id and n.novel_id = :novel_id")
-    List<GetNovelIdRes> findByNovelIdInGroup(Long novel_id);
+    @Query ("select r " +
+            "from RELAY r " +
+            "where r.novel.novel_id = :novel_id ")
+    List<RELAY> findByNovelIdInGroup(Long novel_id);
 
 }
 

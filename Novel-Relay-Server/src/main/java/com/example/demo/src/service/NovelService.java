@@ -65,26 +65,26 @@ public class NovelService {
 
     public List<GetNovelIdRes> getRelayGroup(Long novel_id) throws BaseException {
 
-        List<GetNovelIdRes> relayGroup = relayRepository.findByNovelIdInGroup(novel_id);
+        List<RELAY> relayGroup = relayRepository.findByNovelIdInGroup(novel_id);
 
         if (relayGroup.isEmpty()) {
 //           throw new BaseException();
         }
         List<GetNovelIdRes> getNovelIdResList = new ArrayList<>();
 
-        for (GetNovelIdRes relay: relayGroup) {
+        for (RELAY relay: relayGroup) {
 
             GetNovelIdRes getNovelIdRes = GetNovelIdRes.builder()
                     .relay_id(relay.getRelay_id())
-                    .novel_id(relay.getNovel_id())
-                    .user_id(relay.getUser_id())
+                    .novel_id(relay.getNovel().getNovel_id())
+                    .user_id(relay.getUser().getUser_id())
                     .r_content(relay.getR_content())
-                    .category(relay.getCategory())
-                    .max_num(relay.getMax_num())
-                    .n_content(relay.getN_content())
-                    .like_count(relay.getLike_count())
-                    .relay_count(relay.getRelay_count())
-                    .active(relay.isActive())
+                    .category(relay.getNovel().getCategory())
+                    .max_num(relay.getNovel().getMax_num())
+                    .n_content(relay.getNovel().getN_content())
+                    .like_count(relay.getNovel().getLike_count())
+                    .relay_count(relay.getNovel().getRelay_count())
+                    .active(relay.getNovel().isActive())
                     .build();
             getNovelIdResList.add(getNovelIdRes);
         }
