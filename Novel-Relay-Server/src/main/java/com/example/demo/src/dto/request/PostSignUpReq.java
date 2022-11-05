@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 public class PostSignUpReq {
 
     @NotNull
-    private Long user_id;
+    private String nickname;
     @NotNull
     private String pw;
 

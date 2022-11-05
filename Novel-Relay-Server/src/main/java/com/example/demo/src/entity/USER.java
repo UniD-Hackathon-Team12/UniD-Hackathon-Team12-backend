@@ -20,7 +20,9 @@ public class USER {
     @JsonIgnore
     private Long user_id;
 
-    private Long pw;
+    private String nickname;
+
+    private String pw;
 
 
 
