@@ -1,12 +1,19 @@
 package com.example.demo.src.service;
 
 import com.example.demo.config.BaseException;
+import com.example.demo.config.BaseResponse;
 import com.example.demo.src.dto.request.GetNovelIdReq;
 import com.example.demo.src.dto.response.*;
 import com.example.demo.src.dto.request.PostRelayReq;
+import com.example.demo.src.dto.response.GetNovelIdRes;
+import com.example.demo.src.dto.response.PostRelayRes;
+import com.example.demo.src.dto.request.GetNovelListSearchReq;
+import com.example.demo.src.dto.request.PatchLikeReq;
 import com.example.demo.src.dto.request.PostNovelReq;
 import com.example.demo.src.dto.response.GetNovelIdRes;
+import com.example.demo.src.dto.response.GetNovelListSearchRes;
 import com.example.demo.src.entity.KEYWORD;
+import com.example.demo.src.entity.LIKEINFO;
 import com.example.demo.src.entity.NOVEL;
 import com.example.demo.src.entity.RELAY;
 import com.example.demo.src.repository.KeywordRepository;
@@ -17,6 +24,7 @@ import com.example.demo.utils.SHA256;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,13 +40,16 @@ public class NovelService {
     private RelayRepository relayRepository;
     private UserRepository userRepository;
     private KeywordRepository keywordRepository;
+    private LikeInfoService likeInfoService;
+
 
     @Autowired
-    public NovelService(KeywordRepository keywordRepository, NovelRepository novelRepository, RelayRepository relayRepository, UserRepository userRepository) {
-        this.keywordRepository = keywordRepository;
+    public NovelService(NovelRepository novelRepository, RelayRepository relayRepository, UserRepository userRepository, KeywordRepository keywordRepository, LikeInfoService likeInfoService) {
         this.novelRepository = novelRepository;
         this.relayRepository = relayRepository;
         this.userRepository = userRepository;
+        this.keywordRepository = keywordRepository;
+        this.likeInfoService = likeInfoService;
     }
 
     public List<GetAllRes> getAllGroup() {
@@ -201,6 +212,78 @@ public class NovelService {
         }
 
         return novel_id;
+    }
+
+    //키워드검색
+    public List<String> searchKEYWORDS(String keyword){
+        List<String> result = novelRepository.searchKEYWORDS(keyword);
+
+        System.out.println("확인 : "+ result.toString());
+        return result;
+
+    }
+
+    // 내용 검색
+    public List<GetNovelListSearchRes> searchNOVELLIST( Integer type, GetNovelListSearchReq getNovelListSearchReq){
+        List<GetNovelListSearchRes> result = novelRepository.searchNovelList(type, getNovelListSearchReq);
+
+        return result;
+
+    }
+
+    public Long PatchLike(Long novel_id, PatchLikeReq patchLikeReq) throws BaseException {
+
+        if(patchLikeReq.isActive() == true){ //좋아요 활성화
+            //처음이냐 있는지... 그럼 만들어야됨......
+            LIKEINFO find =  likeInfoService.findLIKEINFO(patchLikeReq.getUser_id(), novel_id);
+            if(find == null){ //만들어서 좋아요 활성화 처리함.
+                LIKEINFO new_likeinfo = likeInfoService.createLIKEINFO(patchLikeReq.getUser_id(), novel_id);
+                if(new_likeinfo.isLikeinfo_active() != true){ //잘못됨.
+                    throw new BaseException(DATABASE_ERROR);
+                }
+            }
+            else{ //좋아요로 변경
+                Integer check = likeInfoService.changeActive(patchLikeReq.isActive(), patchLikeReq.getUser_id(), novel_id);
+                if(check == 0){//제대로 안바뀜.
+                    throw new BaseException(DATABASE_ERROR);
+                }
+            }
+
+            //좋아요 눌러서 cnt + 1 됨.
+            Long cnt = novelRepository.findLikeCnt(novel_id);
+            Integer check2 = changeLikeCount(cnt+1L, novel_id);
+            if(check2 == 0){//제대로 안바뀜.
+                throw new BaseException(DATABASE_ERROR);
+            }
+
+        }
+        else{
+            //좋아요 비활성화
+            Integer check = likeInfoService.changeActive(patchLikeReq.isActive(), patchLikeReq.getUser_id(), novel_id);
+            if(check == 0){//제대로 안바뀜.
+                throw new BaseException(DATABASE_ERROR);
+            }
+
+            //좋아요 비활성화 눌러서 cnt - 1 됨.
+            Long cnt = novelRepository.findLikeCnt(novel_id);
+            Integer check3 = changeLikeCount(cnt-1L, novel_id);
+            if(check3 == 0){//제대로 안바뀜.
+                throw new BaseException(DATABASE_ERROR);
+            }
+
+
+        }
+
+
+        return 200L;
+
+
+    }
+    public Integer changeLikeCount(Long like_count, Long novel_id){
+
+        Integer check = novelRepository.updateLikeCnt(like_count, novel_id);
+        return check;
+
     }
 
 }
