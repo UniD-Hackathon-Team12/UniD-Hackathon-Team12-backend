@@ -10,6 +10,4 @@ import java.util.ArrayList;
 
 public interface RelayRepository extends JpaRepository<RELAY, Long>{
 
-    ArrayList<RELAY> findByNovelIdInGroup(Long novel_id);
-
 }

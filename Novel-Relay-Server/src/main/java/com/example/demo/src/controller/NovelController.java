@@ -21,16 +21,6 @@ public class NovelController {
         this.novelService = novelService;
     }
 
-//    @GetMapping("/{novel_id}")
-//    public BaseResponse<List<GetNovelIdRes>> getReply (@RequestParam(value = "userIdx") Long userIdx) {
-////        try {
-////            List<GetHomeGroupInfoRes> getGroupHomeData = groupInfoService.loadHomeData(userIdx);    //출석율 부분 수정 필요
-////            return new BaseResponse<>(getGroupHomeData);
-////        } catch (BaseException e){
-////            return new BaseResponse<>(e.getStatus());
-////        }
-//    }
-
 
 
 }
