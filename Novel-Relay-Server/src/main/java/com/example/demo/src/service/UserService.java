@@ -27,45 +27,37 @@ public class UserService {
     }
 
 
-    public PostSignUpRes signup(PostSignUpReq postSignUpReq) throws BaseException {
-
-        // id 중복 확인
-        try{
-            USER user = userRepository.findByUserIdx(postSignUpReq.getUser_id());
-            if(user.getUser_id() == postSignUpReq.getUser_id()){ //존재한다. 즉, 중복
-                throw new BaseException(POST_USERS_EXISTS_EMAIL);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        //존재안함.
-
-        String pwd;
-        try{
-            //암호화
-            pwd = new SHA256().encrypt(postSignUpReq.getPw());
-            postSignUpReq.setPw(pwd);
-        } catch (Exception ignored) {
-            throw new BaseException(PASSWORD_ENCRYPTION_ERROR);
-        }
-        try{
-//            USER u = userRepository.save(postSignUpReq);
-//            //jwt 발급.
-//            // TODO: jwt는 다음주차에서 배울 내용입니다!
-//            String jwt = jwtService.createJwt(userIdx);
-//            return new PostUserRes(jwt,userIdx);
-        } catch (Exception exception) {
-            throw new BaseException(DATABASE_ERROR);
-        }
-
-
-
-
-
-
-    }
-
-
-
+//    public PostSignUpRes signup(PostSignUpReq postSignUpReq) throws BaseException {
+//
+//        // id 중복 확인
+//        try{
+//            USER user = userRepository.findByUserIdx(postSignUpReq.getUser_id());
+//            if(user.getUser_id() == postSignUpReq.getUser_id()){ //존재한다. 즉, 중복
+//                throw new BaseException(POST_USERS_EXISTS_EMAIL);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        //존재안함.
+//
+//        String pwd;
+//        try{
+//            //암호화
+//            pwd = new SHA256().encrypt(postSignUpReq.getPw());
+//            postSignUpReq.setPw(pwd);
+//        } catch (Exception ignored) {
+//            throw new BaseException(PASSWORD_ENCRYPTION_ERROR);
+//        }
+//        try{
+////            USER u = userRepository.save(postSignUpReq);
+////            //jwt 발급.
+////            // TODO: jwt는 다음주차에서 배울 내용입니다!
+////            String jwt = jwtService.createJwt(userIdx);
+////            return new PostUserRes(jwt,userIdx);
+//        } catch (Exception exception) {
+//            throw new BaseException(DATABASE_ERROR);
+//        }
+//
+//    }
 
 }

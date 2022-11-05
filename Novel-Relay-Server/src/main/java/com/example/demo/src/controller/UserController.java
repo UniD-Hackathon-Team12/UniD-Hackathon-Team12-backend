@@ -21,12 +21,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/signup")
-    @ResponseBody
-    public BaseResponse<PostSignUpRes> signup(@RequestBody PostSignUpReq postSignUpReq){
-
-
-    }
+//    @PostMapping("/signup")
+//    @ResponseBody
+//    public BaseResponse<PostSignUpRes> signup(@RequestBody PostSignUpReq postSignUpReq){
+//
+//
+//    }
 
 
 }
