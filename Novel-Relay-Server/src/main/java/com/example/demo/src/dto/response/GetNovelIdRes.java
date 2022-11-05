@@ -15,6 +15,18 @@ public class GetNovelIdRes {
 
     private Long novel_id;
 
+    private String category;
+
+    private Integer max_num;
+
+    private String n_content;
+
+    private Long like_count;
+
+    private Long relay_count;
+
+    private boolean active;
+
     private Long user_id;
 
 }
