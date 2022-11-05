@@ -49,7 +49,7 @@ public class NovelService {
 
         if (relayGroup.isEmpty()) {
 //           throw new BaseException();
-
+        }
         List<GetNovelIdRes> getNovelIdResList = new ArrayList<>();
 
         for (RELAY relay: relayGroup) {
@@ -111,6 +111,7 @@ public class NovelService {
         } catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);
         }
+    }
 
     public Long createNovel(String category, PostNovelReq postNovelReq) throws BaseException{
         NOVEL newNovel = NOVEL.builder()
