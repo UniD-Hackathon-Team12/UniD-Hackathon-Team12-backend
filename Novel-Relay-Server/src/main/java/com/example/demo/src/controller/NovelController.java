@@ -21,11 +21,8 @@ public class NovelController {
         this.novelService = novelService;
     }
 
-<<<<<<< HEAD
 //    @GetMapping("/{novel_id}")
 //    public List<>
-=======
 
->>>>>>> 0ad0a650fd73cc8cf1d6551e3553c4551e7e17c1
 
 }
