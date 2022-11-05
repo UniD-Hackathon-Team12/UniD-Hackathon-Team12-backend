@@ -2,6 +2,9 @@ package com.example.demo.src.service;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.src.dto.request.GetNovelIdReq;
+import com.example.demo.src.dto.request.PostRelayReq;
+import com.example.demo.src.dto.response.GetNovelIdRes;
+import com.example.demo.src.dto.response.PostRelayRes;
 import com.example.demo.src.dto.request.PostNovelReq;
 import com.example.demo.src.dto.response.GetNovelIdRes;
 import com.example.demo.src.entity.KEYWORD;
@@ -18,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.example.demo.config.BaseResponseStatus.*;
 
@@ -49,6 +53,25 @@ public class NovelService {
 
         return null;
     }
+
+    public PostRelayRes postRelay(PostRelayReq postRelayReq) throws BaseException {
+        try {
+            RELAY relay = RELAY.builder()
+                    .r_content(postRelayReq.getR_content())
+                    .novel(novelRepository.getOne(postRelayReq.getNovel_id()))
+                    .user(userRepository.getOne(postRelayReq.getUser_id()))
+                    .build();
+            relayRepository.save(relay);
+            NOVEL novel = novelRepository.getOne(postRelayReq.getNovel_id());
+            novel.setRelay_count(novel.getRelay_count() + 1);
+            if (novel.getRelay_count() >= novel.getMax_num()) {
+                novel.setActive(false);
+            }
+            novelRepository.save(novel);
+            return new PostRelayRes(novel.isActive());
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
 
     public Long createNovel(String category, PostNovelReq postNovelReq) throws BaseException{
         NOVEL newNovel = NOVEL.builder()
@@ -112,8 +135,6 @@ public class NovelService {
         }
 
         return novel_id;
-
-
 
     }
 

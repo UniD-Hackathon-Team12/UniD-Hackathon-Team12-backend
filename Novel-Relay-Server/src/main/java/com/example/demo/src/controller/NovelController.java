@@ -3,8 +3,12 @@ package com.example.demo.src.controller;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.config.BaseResponse;
+import com.example.demo.src.dto.request.PostRelayReq;
+import com.example.demo.src.dto.request.PostSignUpReq;
 import com.example.demo.src.dto.request.PostNovelReq;
 import com.example.demo.src.dto.response.GetNovelIdRes;
+import com.example.demo.src.dto.response.PostRelayRes;
+import com.example.demo.src.dto.response.PostSignUpRes;
 import com.example.demo.src.entity.RELAY;
 import com.example.demo.src.service.NovelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +43,12 @@ public class NovelController {
     }
 
 
+    @PostMapping("/{novel_id}/relay")
+    @ResponseBody
+    public BaseResponse<PostRelayRes> signup(@RequestBody PostRelayReq postRelayReq) throws BaseException {
+        PostRelayRes postRelayRes = novelService.postRelay(postRelayReq);
 
+        return new BaseResponse<>(postRelayRes);
+
+    }
 }
