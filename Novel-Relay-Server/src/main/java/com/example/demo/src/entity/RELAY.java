@@ -32,6 +32,11 @@ public class RELAY extends BaseTimeEntity{
     @JoinColumn(name = "user_id")
     private USER user;
 
-
+    @Builder
+    public RELAY(String r_content, NOVEL novel, USER user) {
+        this.r_content = r_content;
+        this.novel = novel;
+        this.user = user;
+    }
 
 }
