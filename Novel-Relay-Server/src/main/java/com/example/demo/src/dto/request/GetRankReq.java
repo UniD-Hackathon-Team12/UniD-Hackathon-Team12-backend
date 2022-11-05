@@ -15,4 +15,5 @@ public class GetRankReq {
     private Long rank_id;
     private  String keyword;
     private Integer count;
+
 }
