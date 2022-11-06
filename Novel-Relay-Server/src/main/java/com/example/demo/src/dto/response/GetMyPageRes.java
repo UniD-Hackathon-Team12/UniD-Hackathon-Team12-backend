@@ -6,6 +6,8 @@ import lombok.*;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import java.util.List;
+
 import static javax.persistence.FetchType.LAZY;
 
 @Builder
@@ -30,6 +32,8 @@ public class GetMyPageRes {
     private boolean active;
 
     private Long user_id;
+
+    private List<String> keywords;
 
 
 }
