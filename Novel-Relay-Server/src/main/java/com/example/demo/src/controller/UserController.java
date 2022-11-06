@@ -57,5 +57,6 @@ public class UserController {
 
         List<List> myNovelList = userService.getMyNovelGroup();
         return new BaseResponse<>(myNovelList);
+
     }
 }

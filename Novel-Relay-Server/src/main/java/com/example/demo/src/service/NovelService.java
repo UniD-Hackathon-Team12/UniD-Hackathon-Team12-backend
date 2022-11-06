@@ -99,6 +99,7 @@ public class NovelService {
                     .relay_id(relay.getRelay_id())
                     .novel_id(relay.getNovel().getNovel_id())
                     .user_id(relay.getUser().getUser_id())
+                    .nickname(relay.getUser().getNickname())
                     .r_content(relay.getR_content())
                     .category(relay.getNovel().getCategory())
                     .max_num(relay.getNovel().getMax_num())
