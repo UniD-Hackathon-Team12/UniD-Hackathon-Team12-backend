@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.example.demo.config.BaseResponseStatus.USERS_EMPTY_USER_ID;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -39,6 +41,9 @@ public class UserController {
     @PostMapping("/signin")
     @ResponseBody
     public BaseResponse<PostSigninRes> signin(@RequestBody PostSigninReq postSigninReq) throws BaseException{
+
+
+
 
         PostSigninRes postSigninRes = userService.signin(postSigninReq);
 

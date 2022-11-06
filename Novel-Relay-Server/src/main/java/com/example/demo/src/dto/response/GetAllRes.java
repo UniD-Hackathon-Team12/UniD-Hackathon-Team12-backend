@@ -8,6 +8,8 @@ import lombok.*;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import java.util.List;
+
 import static javax.persistence.FetchType.LAZY;
 
 @Builder
@@ -33,6 +35,8 @@ public class GetAllRes {
 
     @Builder.Default
     private boolean active = true;
+
+    private List<String> keywords;
 
 //    @Builder
 //    public GetAllRes(NOVEL item) {

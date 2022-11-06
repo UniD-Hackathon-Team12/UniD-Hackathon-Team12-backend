@@ -56,7 +56,11 @@ public class NovelService {
         List<NOVEL> novelGroup = novelRepository.findByAll();
         List<GetAllRes> getAllList = new ArrayList<>();
 
+
         for (NOVEL novel: novelGroup) {
+
+
+            List<String> keywords =  keywordRepository.findKEYWORDLIST(novel.getNovel_id());
 
             GetAllRes getAllRes = GetAllRes.builder()
                     .novel_id(novel.getNovel_id())
@@ -66,6 +70,7 @@ public class NovelService {
                     .like_count(novel.getLike_count())
                     .relay_count(novel.getRelay_count())
                     .active(novel.isActive())
+                    .keywords(keywords)
                     .build();
             getAllList.add(getAllRes);
         }
@@ -94,7 +99,6 @@ public class NovelService {
                     .relay_id(relay.getRelay_id())
                     .novel_id(relay.getNovel().getNovel_id())
                     .user_id(relay.getUser().getUser_id())
-<<<<<<< HEAD
                     .r_content(relay.getR_content())
                     .category(relay.getNovel().getCategory())
                     .max_num(relay.getNovel().getMax_num())
@@ -102,9 +106,7 @@ public class NovelService {
                     .like_count(relay.getNovel().getLike_count())
                     .relay_count(relay.getNovel().getRelay_count())
                     .active(relay.getNovel().isActive())
-=======
                     .keywords(keywords)
->>>>>>> 37a24da51eaaad13c0e4102bb2aa47d2e59b5bdd
                     .build();
             getNovelIdResList.add(getNovelIdRes);
         }
