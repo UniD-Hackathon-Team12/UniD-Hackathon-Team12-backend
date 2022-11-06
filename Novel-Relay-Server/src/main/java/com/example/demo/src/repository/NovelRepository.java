@@ -55,9 +55,12 @@ public interface NovelRepository extends JpaRepository<NOVEL, Long>, NovelReposi
             "where n.category = :category")
     List<NOVEL> findByCateInGroup(String category);
 
+<<<<<<< HEAD
     @Query ("select n "+
             "from NOVEL n " +
             "order by n.like_count desc ")
     List<NOVEL> findByAll();
+=======
+>>>>>>> 37a24da51eaaad13c0e4102bb2aa47d2e59b5bdd
 
 }
