@@ -5,13 +5,10 @@ import com.example.demo.config.BaseResponse;
 import com.example.demo.src.dto.request.GetNovelIdReq;
 import com.example.demo.src.dto.response.*;
 import com.example.demo.src.dto.request.PostRelayReq;
-<<<<<<< HEAD
-=======
 import com.example.demo.src.dto.response.GetNovelIdRes;
 import com.example.demo.src.dto.response.PostRelayRes;
 import com.example.demo.src.dto.request.GetNovelListSearchReq;
 import com.example.demo.src.dto.request.PatchLikeReq;
->>>>>>> 311f91f8453e589d7b03a75e8e9722fd30a10520
 import com.example.demo.src.dto.request.PostNovelReq;
 import com.example.demo.src.dto.response.GetNovelIdRes;
 import com.example.demo.src.dto.response.GetNovelListSearchRes;
@@ -25,6 +22,7 @@ import com.example.demo.src.repository.RelayRepository;
 import com.example.demo.src.repository.UserRepository;
 import com.example.demo.utils.SHA256;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,7 +53,6 @@ public class NovelService {
         this.likeInfoService = likeInfoService;
     }
 
-<<<<<<< HEAD
     public List<GetAllRes> getAllGroup() {
         List<NOVEL> novelGroup = novelRepository.findByAll();
         List<GetAllRes> getAllList = new ArrayList<>();
@@ -77,8 +74,6 @@ public class NovelService {
 
 
     }
-=======
->>>>>>> 311f91f8453e589d7b03a75e8e9722fd30a10520
 
     public List<GetNovelIdRes> getRelayGroup(Long novel_id) throws BaseException {
 

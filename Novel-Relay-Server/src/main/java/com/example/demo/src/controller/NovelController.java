@@ -19,13 +19,13 @@ import com.example.demo.src.dto.response.GetNovelListSearchRes;
 import com.example.demo.src.entity.RELAY;
 import com.example.demo.src.service.KeywordService;
 import com.example.demo.src.service.NovelService;
+import com.example.demo.utils.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.example.demo.config.BaseResponseStatus.DATABASE_ERROR;
-import static com.example.demo.config.BaseResponseStatus.INVALID_KEYWORD;
+import static com.example.demo.config.BaseResponseStatus.*;
 
 @RestController
 @RequestMapping("/novel")
@@ -34,10 +34,13 @@ public class NovelController {
     private final NovelService novelService;
     private final KeywordService keywordService;
 
+    private final JwtService jwtService;
+
     @Autowired
-    public NovelController(NovelService novelService, KeywordService keywordService) {
+    public NovelController(JwtService jwtService, NovelService novelService, KeywordService keywordService) {
         this.novelService = novelService;
         this.keywordService = keywordService;
+        this.jwtService = jwtService;
     }
 
     @GetMapping("/{novel_id}")
@@ -107,7 +110,12 @@ public class NovelController {
 
     @PostMapping("/{novel_id}/relay")
     @ResponseBody
-    public BaseResponse<PostRelayRes> signup(@RequestBody PostRelayReq postRelayReq) throws BaseException {
+    public BaseResponse<PostRelayRes> postRelay(@RequestBody PostRelayReq postRelayReq) throws BaseException {
+
+        int userIdxByJwt = jwtService.getUserIdx();
+        if(postRelayReq.getUser_id() != userIdxByJwt){
+            return new BaseResponse<>(INVALID_USER_JWT);
+        }
         PostRelayRes postRelayRes = novelService.postRelay(postRelayReq);
 
         return new BaseResponse<>(postRelayRes);

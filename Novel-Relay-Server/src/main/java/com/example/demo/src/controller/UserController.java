@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.example.demo.config.BaseResponseStatus.FAILED_TO_LOGIN;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -31,6 +33,7 @@ public class UserController {
     public BaseResponse<PostSignUpRes> signup(@RequestBody PostSignUpReq postSignUpReq) throws BaseException {
         PostSignUpRes postSignUpRes = userService.signup(postSignUpReq);
 
+
         return new BaseResponse<>(postSignUpRes);
 
     }
@@ -40,11 +43,17 @@ public class UserController {
     @ResponseBody
     public BaseResponse<PostSigninRes> signin(@RequestBody PostSigninReq postSigninReq) throws BaseException{
 
-        PostSigninRes postSigninRes = userService.signin(postSigninReq);
 
-        return new BaseResponse<>(postSigninRes);
+        try {
+            PostSigninRes postSigninRes = userService.signin(postSigninReq);
+            if (postSigninRes.getUser_id() == -1L) {
+                return new BaseResponse(FAILED_TO_LOGIN);
+            }
+            return new BaseResponse<>(postSigninRes);
 
-
+        } catch (BaseException e) {
+            return new BaseResponse(FAILED_TO_LOGIN);
+        }
     }
 
     @GetMapping("/mypage")

@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.demo.config.BaseResponseStatus.*;
+import static java.util.Objects.isNull;
 
 
 @Service
@@ -93,6 +94,10 @@ public class UserService {
         //클라이언트에서 받은 객체에서 email을 받아서, 이 email을 가진 해당 유저를 리턴을 해줌.
         // (DB에서 회원가입이 되어 있는지를 확인하면서 가지고 오는거임)
         USER user = userRepository.findByNickname(postSigninReq.getNickname());
+        if (isNull(user)) {
+            return new PostSigninRes(-1L, "-1");
+        }
+
         System.out.println(user.toString());
         String encryptPwd;
 
@@ -119,9 +124,8 @@ public class UserService {
             return new PostSigninRes(userIdx, jwt);
         } else {
             throw new BaseException(FAILED_TO_LOGIN);
+            //return new PostSigninRes()
         }
-
-
 
     }
 
