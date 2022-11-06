@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface KeywordRepository extends JpaRepository<KEYWORD, Long> {
 
@@ -23,5 +25,10 @@ public interface KeywordRepository extends JpaRepository<KEYWORD, Long> {
     Integer updateFreq(@Param("freq")Integer freq,@Param("keyword")String keyword);
 
 
+
+    @Query("select k.keyword " +
+            "from KEYWORD k " +
+            "where k.novel.novel_id = :novel_id ")
+    List<String> findKEYWORDLIST(@Param("novel_id") Long novel_id);
 
 }

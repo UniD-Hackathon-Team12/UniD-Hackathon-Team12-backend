@@ -55,4 +55,5 @@ public interface NovelRepository extends JpaRepository<NOVEL, Long>, NovelReposi
             "where n.category = :category")
     List<NOVEL> findByCateInGroup(String category);
 
+
 }

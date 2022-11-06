@@ -53,9 +53,14 @@ public class NovelService {
     }
 
 
+    //특정 소설
     public List<GetNovelIdRes> getRelayGroup(Long novel_id) throws BaseException {
 
         List<RELAY> relayGroup = relayRepository.findByNovelIdInGroup(novel_id);
+
+
+        //추가
+        List<String> keywords =  keywordRepository.findKEYWORDLIST(novel_id);
 
         if (relayGroup.isEmpty()) {
 //           throw new BaseException();
@@ -69,6 +74,7 @@ public class NovelService {
                     .novel_id(relay.getNovel().getNovel_id())
                     .r_content(relay.getR_content())
                     .user_id(relay.getUser().getUser_id())
+                    .keywords(keywords)
                     .build();
             getNovelIdResList.add(getNovelIdRes);
         }
