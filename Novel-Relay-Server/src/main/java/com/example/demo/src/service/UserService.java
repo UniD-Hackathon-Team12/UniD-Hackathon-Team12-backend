@@ -138,12 +138,12 @@ public class UserService {
     public List<List> getMyNovelGroup(GetMyPageReq getMyPageReq) throws BaseException {
 
 
-        int userIdxByJwt = jwtService.getUserIdx();
-        if( getMyPageReq.getUser_id()!= userIdxByJwt){
-            throw new BaseException(INVALID_USER_JWT);
-        }
+//        int userIdxByJwt = jwtService.getUserIdx();
+//        if( getMyPageReq.getUser_id()!= userIdxByJwt){
+//            throw new BaseException(INVALID_USER_JWT);
+//        }
 
-        String nickname = userRepository.findByuserId(getMyPageReq.getUser_id());
+        //String nickname = userRepository.findByuserId(getMyPageReq.getUser_id());
 
         Long user_id = getMyPageReq.getUser_id();
 
@@ -226,10 +226,6 @@ public class UserService {
         myPageList.add(getParticipateNovelList);
         myPageList.add(getLikeNovelList);
 
-        GetMyPageRes2 result = GetMyPageRes2.builder()
-                .nickname(nickname)
-                .result(myPageList)
-                .build();
 
         return  myPageList;
     }
