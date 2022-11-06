@@ -252,7 +252,7 @@ public class NovelService {
 
     public PatchLikeRes PatchLike(Long novel_id, PatchLikeReq patchLikeReq) throws BaseException {
 
-        Boolean isactive = likeInfoService.getPresentLike(novel_id, patchLikeReq.getUser_id());
+        boolean isactive = likeInfoService.getPresentLike(novel_id, patchLikeReq.getUser_id());
         if(isactive){ //좋아요 활성화
             //처음이냐 있는지... 그럼 만들어야됨......
             LIKEINFO find =  likeInfoService.findLIKEINFO(patchLikeReq.getUser_id(), novel_id);
@@ -294,7 +294,7 @@ public class NovelService {
 
         }
 
-        Boolean active = likeInfoService.getPresentLike(novel_id, patchLikeReq.getUser_id());
+        boolean active = likeInfoService.getPresentLike(novel_id, patchLikeReq.getUser_id());
 
         return new PatchLikeRes(patchLikeReq.getUser_id(), active, novel_id);
 

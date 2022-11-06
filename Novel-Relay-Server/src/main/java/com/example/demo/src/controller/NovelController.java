@@ -94,13 +94,13 @@ public class NovelController {
     @ResponseBody
     public BaseResponse<PatchLikeRes> PatchLike(@PathVariable("novel_id") Long novel_id, @RequestBody PatchLikeReq patchLikeReq) throws BaseException {
 
-        System.out.println(">>>>>>>>novelid " + novel_id);
-        System.out.println(patchLikeReq.getUser_id());
-        System.out.println(patchLikeReq.isActive());
+        //System.out.println(">>>>>>>>novelid " + novel_id);
+        //System.out.println(patchLikeReq.getUser_id());
+        //System.out.println(patchLikeReq.isActive());
         PatchLikeRes result = novelService.PatchLike(novel_id,patchLikeReq);
-        if(result != 200L){
-            return new BaseResponse<>(DATABASE_ERROR);
-        }
+//        if(!result){
+//            return new BaseResponse<>(DATABASE_ERROR);
+//        }
         return new BaseResponse<>(result);
 
     }

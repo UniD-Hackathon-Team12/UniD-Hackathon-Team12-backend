@@ -6,7 +6,6 @@ import com.example.demo.src.entity.LIKEINFO;
 import com.example.demo.src.repository.LikeInfoRepository;
 import com.example.demo.src.repository.NovelRepository;
 import com.example.demo.src.repository.UserRepository;
-import org.graalvm.compiler.asm.sparc.SPARCAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
@@ -62,8 +61,8 @@ public class LikeInfoService {
 
     }
 
-    public Boolean getPresentLike(Long novel_id, Long user_id){
-        Boolean check = likeInfoRepository.getPresentLike(novel_id, user_id);
+    public boolean getPresentLike(Long novel_id, Long user_id){
+        boolean check = likeInfoRepository.getPresentLike(novel_id, user_id);
 
         return check;
 
