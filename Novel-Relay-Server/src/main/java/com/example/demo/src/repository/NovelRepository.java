@@ -31,7 +31,7 @@ public interface NovelRepository extends JpaRepository<NOVEL, Long>, NovelReposi
     @Query ("select n " +
             "from NOVEL n " +
             "where n.user.user_id = :user_id")
-    List<NOVEL> findByUserIdInWrite(Long user_id);
+    List<NOVEL> findByUserIdInWrite(@Param("user_id")Long user_id);
 
 
     @Query ("select n " +
@@ -40,7 +40,7 @@ public interface NovelRepository extends JpaRepository<NOVEL, Long>, NovelReposi
             "   (select r.novel.novel_id " +
             "   from RELAY r " +
             "   where r.user.user_id = :user_id)")
-    List<NOVEL> findByUserIdInParticipate(Long user_id);
+    List<NOVEL> findByUserIdInParticipate(@Param("user_id")Long user_id);
 
     @Query ("select n " +
             "from NOVEL n " +
@@ -48,12 +48,12 @@ public interface NovelRepository extends JpaRepository<NOVEL, Long>, NovelReposi
             "   (select l.novel.novel_id" +
             "   from LIKEINFO l" +
             "   where l.user.user_id = :user_id)")
-    List<NOVEL> findByUserIdInLike(Long user_id);
+    List<NOVEL> findByUserIdInLike(@Param("user_id")Long user_id);
 
     @Query ("select n "+
             "from NOVEL n " +
             "where n.category = :category")
-    List<NOVEL> findByCateInGroup(String category);
+    List<NOVEL> findByCateInGroup(@Param("category")String category);
 
     @Query ("select n "+
             "from NOVEL n " +

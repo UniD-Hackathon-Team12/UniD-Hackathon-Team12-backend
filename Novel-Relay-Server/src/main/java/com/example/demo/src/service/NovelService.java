@@ -126,6 +126,11 @@ public class NovelService {
 
         for (NOVEL novel: cateNovelGroup) {
 
+            //추가
+            List<String> keywords =  keywordRepository.findKEYWORDLIST(novel.getNovel_id());
+
+
+
             GetCategoryRes getCategoryRes = GetCategoryRes.builder()
                     .novel_id(novel.getNovel_id())
                     .category(novel.getCategory())
@@ -135,6 +140,7 @@ public class NovelService {
                     .relay_count(novel.getRelay_count())
                     .user_id(novel.getUser().getUser_id())
                     .active(novel.isActive())
+                    .keywords(keywords)
                     .build();
             getCategoryResList.add(getCategoryRes);
         }
