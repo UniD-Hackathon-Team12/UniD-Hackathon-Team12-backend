@@ -81,7 +81,7 @@ public class NovelController {
     }
 
     //n_content 검색
-    @GetMapping("/{type}/search")
+    @PostMapping("/{type}/search")
     @ResponseBody
     public BaseResponse<List<GetNovelListSearchRes>> searchNOVELLIST(@PathVariable Integer type, @RequestBody GetNovelListSearchReq getNovelListSearchReq){
         System.out.println("start"+getNovelListSearchReq.getR_content());
@@ -92,16 +92,15 @@ public class NovelController {
 
     @PatchMapping("{novel_id}/like")
     @ResponseBody
-    public BaseResponse<Long> PatchLike(@PathVariable("novel_id") Long novel_id, @RequestBody PatchLikeReq patchLikeReq) throws BaseException {
+    public BaseResponse<PatchLikeRes> PatchLike(@PathVariable("novel_id") Long novel_id, @RequestBody PatchLikeReq patchLikeReq) throws BaseException {
 
         System.out.println(">>>>>>>>novelid " + novel_id);
         System.out.println(patchLikeReq.getUser_id());
         System.out.println(patchLikeReq.isActive());
-        Long result = novelService.PatchLike(novel_id,patchLikeReq);
+        PatchLikeRes result = novelService.PatchLike(novel_id,patchLikeReq);
         if(result != 200L){
             return new BaseResponse<>(DATABASE_ERROR);
         }
-
         return new BaseResponse<>(result);
 
     }

@@ -31,6 +31,8 @@ public class GetNovelIdRes {
 
     private Long user_id;
 
+    private String nickname;
+
     private List<String> keywords;
 
 }

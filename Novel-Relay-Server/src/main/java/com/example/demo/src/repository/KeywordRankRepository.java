@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 public interface KeywordRankRepository extends JpaRepository<KEYWORDRANK, Long> {
-    public List<KEYWORDRANK> findTop5ByOrderByCountDesc();
+    public List<KEYWORDRANK> findTop100ByOrderByCountDesc();
 
     @Query("select k " +
             "from KEYWORDRANK k " +

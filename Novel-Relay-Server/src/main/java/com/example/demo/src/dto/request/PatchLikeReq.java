@@ -11,5 +11,4 @@ import lombok.*;
 public class PatchLikeReq {
 
     private Long user_id;
-    private boolean active;
 }

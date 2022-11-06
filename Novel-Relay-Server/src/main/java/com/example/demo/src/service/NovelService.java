@@ -100,6 +100,7 @@ public class NovelService {
                     .relay_id(relay.getRelay_id())
                     .novel_id(relay.getNovel().getNovel_id())
                     .user_id(relay.getUser().getUser_id())
+                    .nickname(relay.getUser().getNickname())
                     .r_content(relay.getR_content())
                     .category(relay.getNovel().getCategory())
                     .max_num(relay.getNovel().getMax_num())
@@ -249,9 +250,10 @@ public class NovelService {
 
     }
 
-    public Long PatchLike(Long novel_id, PatchLikeReq patchLikeReq) throws BaseException {
+    public PatchLikeRes PatchLike(Long novel_id, PatchLikeReq patchLikeReq) throws BaseException {
 
-        if(patchLikeReq.isActive() == true){ //좋아요 활성화
+        Boolean isactive = likeInfoService.getPresentLike(novel_id, patchLikeReq.getUser_id());
+        if(isactive){ //좋아요 활성화
             //처음이냐 있는지... 그럼 만들어야됨......
             LIKEINFO find =  likeInfoService.findLIKEINFO(patchLikeReq.getUser_id(), novel_id);
             if(find == null){ //만들어서 좋아요 활성화 처리함.
@@ -261,7 +263,7 @@ public class NovelService {
                 }
             }
             else{ //좋아요로 변경
-                Integer check = likeInfoService.changeActive(patchLikeReq.isActive(), patchLikeReq.getUser_id(), novel_id);
+                Integer check = likeInfoService.changeActive(isactive, patchLikeReq.getUser_id(), novel_id);
                 if(check == 0){//제대로 안바뀜.
                     throw new BaseException(DATABASE_ERROR);
                 }
@@ -277,7 +279,7 @@ public class NovelService {
         }
         else{
             //좋아요 비활성화
-            Integer check = likeInfoService.changeActive(patchLikeReq.isActive(), patchLikeReq.getUser_id(), novel_id);
+            Integer check = likeInfoService.changeActive(isactive, patchLikeReq.getUser_id(), novel_id);
             if(check == 0){//제대로 안바뀜.
                 throw new BaseException(DATABASE_ERROR);
             }
@@ -292,9 +294,9 @@ public class NovelService {
 
         }
 
+        Boolean active = likeInfoService.getPresentLike(novel_id, patchLikeReq.getUser_id());
 
-        return 200L;
-
+        return new PatchLikeRes(patchLikeReq.getUser_id(), active, novel_id);
 
     }
     public Integer changeLikeCount(Long like_count, Long novel_id){

@@ -23,7 +23,7 @@ public class KeywordRankService {
     }
 
     public List<GetRankRes> getTopKeywords() throws BaseException {
-        return keywordRankRepository.findTop5ByOrderByCountDesc().stream()
+        return keywordRankRepository.findTop100ByOrderByCountDesc().stream()
                 .map(item -> new GetRankRes(item))
                 .collect(Collectors.toList());
     }
