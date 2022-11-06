@@ -14,8 +14,8 @@ public interface RelayRepository extends JpaRepository<RELAY, Long>{
 
     @Query ("select r " +
             "from RELAY r " +
-            "where r.novel.novel_id = :novel_id ")
-    List<RELAY> findByNovelIdInGroup(@Param(value = "novel_id") Long novel_id);
+            "where r.novel.novel_id = :novel_id")
+    List<RELAY> findByNovelIdInGroup(@Param("novel_id") Long novel_id);
 
 }
 

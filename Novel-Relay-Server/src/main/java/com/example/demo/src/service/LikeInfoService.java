@@ -40,13 +40,12 @@ public class LikeInfoService {
     //없으면 새로 생성해야지. 생성했을때 active true임 눌렀으니깐.
     public LIKEINFO createLIKEINFO(Long user_id, Long novel_id) throws BaseException {
         try{
-            LIKEINFO new_likeinfo = LIKEINFO.builder()
+            LIKEINFO nl = LIKEINFO.builder()
                     .likeinfo_active(true)
                     .novel(novelRepository.getOne(novel_id))
                     .user(userRepository.getOne(user_id))
                     .build();
-
-            LIKEINFO saved = likeInfoRepository.save(new_likeinfo);
+            LIKEINFO saved = likeInfoRepository.save(nl);
             System.out.println("저장되었다. " + saved.toString());
             return saved;
         }catch (Exception exception) {

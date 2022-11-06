@@ -60,4 +60,5 @@ public interface NovelRepository extends JpaRepository<NOVEL, Long>, NovelReposi
             "order by n.like_count desc ")
     List<NOVEL> findByAll();
 
+
 }

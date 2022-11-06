@@ -57,7 +57,11 @@ public class NovelService {
         List<NOVEL> novelGroup = novelRepository.findByAll();
         List<GetAllRes> getAllList = new ArrayList<>();
 
+
         for (NOVEL novel: novelGroup) {
+
+
+            List<String> keywords =  keywordRepository.findKEYWORDLIST(novel.getNovel_id());
 
             GetAllRes getAllRes = GetAllRes.builder()
                     .novel_id(novel.getNovel_id())
@@ -67,6 +71,7 @@ public class NovelService {
                     .like_count(novel.getLike_count())
                     .relay_count(novel.getRelay_count())
                     .active(novel.isActive())
+                    .keywords(keywords)
                     .build();
             getAllList.add(getAllRes);
         }
@@ -75,9 +80,14 @@ public class NovelService {
 
     }
 
+    //특정 소설
     public List<GetNovelIdRes> getRelayGroup(Long novel_id) throws BaseException {
 
         List<RELAY> relayGroup = relayRepository.findByNovelIdInGroup(novel_id);
+
+
+        //추가
+        List<String> keywords =  keywordRepository.findKEYWORDLIST(novel_id);
 
         if (relayGroup.isEmpty()) {
 //           throw new BaseException();
@@ -97,6 +107,7 @@ public class NovelService {
                     .like_count(relay.getNovel().getLike_count())
                     .relay_count(relay.getNovel().getRelay_count())
                     .active(relay.getNovel().isActive())
+                    .keywords(keywords)
                     .build();
             getNovelIdResList.add(getNovelIdRes);
         }
@@ -116,6 +127,11 @@ public class NovelService {
 
         for (NOVEL novel: cateNovelGroup) {
 
+            //추가
+            List<String> keywords =  keywordRepository.findKEYWORDLIST(novel.getNovel_id());
+
+
+
             GetCategoryRes getCategoryRes = GetCategoryRes.builder()
                     .novel_id(novel.getNovel_id())
                     .category(novel.getCategory())
@@ -125,6 +141,7 @@ public class NovelService {
                     .relay_count(novel.getRelay_count())
                     .user_id(novel.getUser().getUser_id())
                     .active(novel.isActive())
+                    .keywords(keywords)
                     .build();
             getCategoryResList.add(getCategoryRes);
         }
@@ -287,11 +304,4 @@ public class NovelService {
 
     }
 
-
-
-
-
-
-
-
-    }
+}

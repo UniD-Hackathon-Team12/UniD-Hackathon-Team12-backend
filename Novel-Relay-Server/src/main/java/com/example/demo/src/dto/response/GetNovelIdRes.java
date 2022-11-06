@@ -2,6 +2,8 @@ package com.example.demo.src.dto.response;
 
 import lombok.*;
 
+import java.util.List;
+
 @Builder
 @Getter
 @Setter
@@ -28,5 +30,7 @@ public class GetNovelIdRes {
     private boolean active;
 
     private Long user_id;
+
+    private List<String> keywords;
 
 }

@@ -93,6 +93,13 @@ public class UserService {
         System.out.println(postSigninReq.getPw());
         //클라이언트에서 받은 객체에서 email을 받아서, 이 email을 가진 해당 유저를 리턴을 해줌.
         // (DB에서 회원가입이 되어 있는지를 확인하면서 가지고 오는거임)
+
+        System.out.println("들어와?");
+        System.out.println(postSigninReq.getNickname());
+        System.out.println(postSigninReq.getPw());
+        //클라이언트에서 받은 객체에서 email을 받아서, 이 email을 가진 해당 유저를 리턴을 해줌.
+        // (DB에서 회원가입이 되어 있는지를 확인하면서 가지고 오는거임)
+
         USER user = userRepository.findByNickname(postSigninReq.getNickname());
         if (isNull(user)) {
             return new PostSigninRes(-1L, "-1");
