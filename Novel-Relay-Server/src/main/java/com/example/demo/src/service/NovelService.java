@@ -253,47 +253,71 @@ public class NovelService {
     public PatchLikeRes PatchLike(Long novel_id, PatchLikeReq patchLikeReq) throws BaseException {
 
         boolean isactive = likeInfoService.getPresentLike(novel_id, patchLikeReq.getUser_id());
-        if(isactive){ //좋아요 활성화
-            //처음이냐 있는지... 그럼 만들어야됨......
-            LIKEINFO find =  likeInfoService.findLIKEINFO(patchLikeReq.getUser_id(), novel_id);
-            if(find == null){ //만들어서 좋아요 활성화 처리함.
-                LIKEINFO new_likeinfo = likeInfoService.createLIKEINFO(patchLikeReq.getUser_id(), novel_id);
-                if(new_likeinfo.isLikeinfo_active() != true){ //잘못됨.
-                    throw new BaseException(DATABASE_ERROR);
-                }
-            }
-            else{ //좋아요로 변경
-                Integer check = likeInfoService.changeActive(isactive, patchLikeReq.getUser_id(), novel_id);
-                if(check == 0){//제대로 안바뀜.
-                    throw new BaseException(DATABASE_ERROR);
-                }
-            }
 
-            //좋아요 눌러서 cnt + 1 됨.
+        if(isactive == true){ // 좋아요 누른 상태 -> 비활성화 해야함.
+            Integer check = likeInfoService.changeActive(!isactive, patchLikeReq.getUser_id(), novel_id);
+            Long cnt = novelRepository.findLikeCnt(novel_id);
+            Integer check2 = changeLikeCount(cnt-1L, novel_id);
+        }
+        else if(isactive == false){ //싫어오 누른 상태 -> 활성화로 변경.
+            Integer check = likeInfoService.changeActive(!isactive, patchLikeReq.getUser_id(), novel_id);
             Long cnt = novelRepository.findLikeCnt(novel_id);
             Integer check2 = changeLikeCount(cnt+1L, novel_id);
-            if(check2 == 0){//제대로 안바뀜.
-                throw new BaseException(DATABASE_ERROR);
-            }
+
 
         }
-        else{
-            //좋아요 비활성화
-            Integer check = likeInfoService.changeActive(isactive, patchLikeReq.getUser_id(), novel_id);
-            if(check == 0){//제대로 안바뀜.
-                throw new BaseException(DATABASE_ERROR);
-            }
+        else{ //없으면 만들어
 
-            //좋아요 비활성화 눌러서 cnt - 1 됨.
+            LIKEINFO new_likeinfo = likeInfoService.createLIKEINFO(patchLikeReq.getUser_id(), novel_id);
+            if(new_likeinfo.isLikeinfo_active() != true){ //잘못됨.
+                //throw new BaseException(DATABASE_ERROR);
+            }
             Long cnt = novelRepository.findLikeCnt(novel_id);
-            Integer check3 = changeLikeCount(cnt-1L, novel_id);
-            if(check3 == 0){//제대로 안바뀜.
-                throw new BaseException(DATABASE_ERROR);
-            }
-
+            Integer check2 = changeLikeCount(cnt+1L, novel_id);
 
         }
 
+//        if(isactive){ //좋아요 활성화
+//            //처음이냐 있는지... 그럼 만들어야됨......
+//            LIKEINFO find =  likeInfoService.findLIKEINFO(patchLikeReq.getUser_id(), novel_id);
+//            if(find == null){ //만들어서 좋아요 활성화 처리함.
+//                LIKEINFO new_likeinfo = likeInfoService.createLIKEINFO(patchLikeReq.getUser_id(), novel_id);
+//                if(new_likeinfo.isLikeinfo_active() != true){ //잘못됨.
+//                    //throw new BaseException(DATABASE_ERROR);
+//                }
+//            }
+//            else{ //좋아요로 변경
+//                Integer check = likeInfoService.changeActive(isactive, patchLikeReq.getUser_id(), novel_id);
+//                if(check == 0){//제대로 안바뀜.
+//                    //throw new BaseException(DATABASE_ERROR);
+//                }
+//            }
+//
+//            //좋아요 눌러서 cnt + 1 됨.
+//            Long cnt = novelRepository.findLikeCnt(novel_id);
+//            Integer check2 = changeLikeCount(cnt+1L, novel_id);
+//            if(check2 == 0){//제대로 안바뀜.
+//                //throw new BaseException(DATABASE_ERROR);
+//            }
+//
+//        }
+//        else{
+//            //좋아요 비활성화
+//            Integer check = likeInfoService.changeActive(isactive, patchLikeReq.getUser_id(), novel_id);
+//            if(check == 0){//제대로 안바뀜.
+//                //throw new BaseException(DATABASE_ERROR);
+//            }
+//
+//            //좋아요 비활성화 눌러서 cnt - 1 됨.
+//            Long cnt = novelRepository.findLikeCnt(novel_id);
+//            Integer check3 = changeLikeCount(cnt-1L, novel_id);
+//            if(check3 == 0){//제대로 안바뀜.
+//                //throw new BaseException(DATABASE_ERROR);
+//            }
+//
+//
+//        }
+//
         boolean active = likeInfoService.getPresentLike(novel_id, patchLikeReq.getUser_id());
 
         return new PatchLikeRes(patchLikeReq.getUser_id(), active, novel_id);

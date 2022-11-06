@@ -2,15 +2,15 @@ package com.example.demo.src.service;
 
 
 import com.example.demo.config.BaseException;
+import com.example.demo.config.BaseResponse;
+import com.example.demo.src.dto.request.GetMyPageReq;
 import com.example.demo.src.dto.request.PostSignUpReq;
 import com.example.demo.src.dto.request.PostSigninReq;
-import com.example.demo.src.dto.response.GetMyPageRes;
-import com.example.demo.src.dto.response.GetNovelIdRes;
-import com.example.demo.src.dto.response.PostSignUpRes;
-import com.example.demo.src.dto.response.PostSigninRes;
+import com.example.demo.src.dto.response.*;
 import com.example.demo.src.entity.NOVEL;
 import com.example.demo.src.entity.RELAY;
 import com.example.demo.src.entity.USER;
+import com.example.demo.src.repository.KeywordRepository;
 import com.example.demo.src.repository.NovelRepository;
 import com.example.demo.src.repository.UserRepository;
 import com.example.demo.utils.JwtService;
@@ -34,10 +34,13 @@ public class UserService {
     private UserRepository userRepository;
     private NovelRepository novelRepository;
     private JwtService jwtService;
+    private KeywordRepository keywordRepository;
+
 
     @Autowired
-    public UserService(UserRepository userRepository, NovelRepository novelRepository, JwtService jwtService)
+    public UserService(KeywordRepository keywordRepository, UserRepository userRepository, NovelRepository novelRepository, JwtService jwtService)
     {
+        this.keywordRepository = keywordRepository;
         this.userRepository = userRepository;
         this.novelRepository = novelRepository;
         this.jwtService = jwtService;
@@ -136,9 +139,18 @@ public class UserService {
 
     }
 
-    public List<List> getMyNovelGroup() throws BaseException {
+    public List<List> getMyNovelGroup(GetMyPageReq getMyPageReq) throws BaseException {
 
-        Long user_id = Long.valueOf(jwtService.getUserIdx());
+
+//        int userIdxByJwt = jwtService.getUserIdx();
+//        if( getMyPageReq.getUser_id()!= userIdxByJwt){
+//            throw new BaseException(INVALID_USER_JWT);
+//        }
+
+        //String nickname = userRepository.findByuserId(getMyPageReq.getUser_id());
+
+        Long user_id = getMyPageReq.getUser_id();
+
         List<NOVEL> writeNovelGroup = novelRepository.findByUserIdInWrite(user_id);
         List<GetMyPageRes> getWriteNovelList = new ArrayList<>();
 
@@ -146,6 +158,7 @@ public class UserService {
 
         } else {
             for (NOVEL writeNovel: writeNovelGroup) {
+                List<String> keywords = keywordRepository.findKEYWORDLIST(writeNovel.getNovel_id());
 
                 GetMyPageRes getMyPageRes = GetMyPageRes.builder()
                         .novel_id(writeNovel.getNovel_id())
@@ -155,6 +168,7 @@ public class UserService {
                         .like_count(writeNovel.getLike_count())
                         .relay_count(writeNovel.getRelay_count())
                         .active(writeNovel.isActive())
+                        .keywords(keywords)
                         .build();
                 getWriteNovelList.add(getMyPageRes);
             }
@@ -169,6 +183,9 @@ public class UserService {
         } else {
             for (NOVEL participateNovel: participateNovelGroup) {
 
+                List<String> keywords = keywordRepository.findKEYWORDLIST(participateNovel.getNovel_id());
+
+
                 GetMyPageRes getMyPageRes = GetMyPageRes.builder()
                         .novel_id(participateNovel.getNovel_id())
                         .category(participateNovel.getCategory())
@@ -177,6 +194,7 @@ public class UserService {
                         .like_count(participateNovel.getLike_count())
                         .relay_count(participateNovel.getRelay_count())
                         .active(participateNovel.isActive())
+                        .keywords(keywords)
                         .build();
                 getParticipateNovelList.add(getMyPageRes);
             }
@@ -190,6 +208,9 @@ public class UserService {
         } else {
             for (NOVEL likeNovel: likeNovelGroup) {
 
+                List<String> keywords = keywordRepository.findKEYWORDLIST(likeNovel.getNovel_id());
+
+
                 GetMyPageRes getMyPageRes = GetMyPageRes.builder()
                         .novel_id(likeNovel.getNovel_id())
                         .category(likeNovel.getCategory())
@@ -198,6 +219,7 @@ public class UserService {
                         .like_count(likeNovel.getLike_count())
                         .relay_count(likeNovel.getRelay_count())
                         .active(likeNovel.isActive())
+                        .keywords(keywords)
                         .build();
                 getLikeNovelList.add(getMyPageRes);
             }
@@ -207,6 +229,7 @@ public class UserService {
         myPageList.add(getWriteNovelList);
         myPageList.add(getParticipateNovelList);
         myPageList.add(getLikeNovelList);
+
 
         return  myPageList;
     }

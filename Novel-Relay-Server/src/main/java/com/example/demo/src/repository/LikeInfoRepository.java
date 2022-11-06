@@ -36,6 +36,13 @@ public interface LikeInfoRepository extends JpaRepository<LIKEINFO, Long> {
     boolean getPresentLike(@Param("user_id")Long user_id, @Param("novel_id")Long novel_id);
 
 
+    @Query("select l " +
+            "from LIKEINFO l " +
+            "where l.user.user_id = :user_id and l.novel.novel_id = :novel_id ")
+    LIKEINFO getPresentLike2(@Param("user_id")Long user_id, @Param("novel_id")Long novel_id);
+
+
+
 
 
 

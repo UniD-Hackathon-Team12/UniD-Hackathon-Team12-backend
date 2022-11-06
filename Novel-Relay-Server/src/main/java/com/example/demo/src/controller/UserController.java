@@ -3,6 +3,7 @@ package com.example.demo.src.controller;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.config.BaseResponse;
+import com.example.demo.src.dto.request.GetMyPageReq;
 import com.example.demo.src.dto.request.PostSignUpReq;
 import com.example.demo.src.dto.request.PostSigninReq;
 import com.example.demo.src.dto.response.GetNovelIdRes;
@@ -51,10 +52,10 @@ public class UserController {
 
 
 
-    @GetMapping("/mypage")
-    public BaseResponse<List<List>> getMyNovelGroup() throws BaseException{
+    @PostMapping("/mypage")
+    public BaseResponse<List<List>> getMyNovelGroup(@RequestBody GetMyPageReq getMyPageReq) throws BaseException{
 
-        List<List> myNovelList = userService.getMyNovelGroup();
+        List<List> myNovelList = userService.getMyNovelGroup(getMyPageReq);
         return new BaseResponse<>(myNovelList);
 
     }
