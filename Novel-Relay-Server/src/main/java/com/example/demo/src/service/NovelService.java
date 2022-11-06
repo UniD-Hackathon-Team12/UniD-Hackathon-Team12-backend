@@ -252,8 +252,9 @@ public class NovelService {
 
     public PatchLikeRes PatchLike(Long novel_id, PatchLikeReq patchLikeReq) throws BaseException {
 
-        boolean isactive = likeInfoService.getPresentLike(novel_id, patchLikeReq.getUser_id());
+        LIKEINFO likeinfo2 = likeInfoService.getPresentLike(novel_id, patchLikeReq.getUser_id());
 
+        boolean isactive = likeinfo2.isLikeinfo_active();
         if(isactive == true){ // 좋아요 누른 상태 -> 비활성화 해야함.
             Integer check = likeInfoService.changeActive(!isactive, patchLikeReq.getUser_id(), novel_id);
             Long cnt = novelRepository.findLikeCnt(novel_id);
@@ -318,9 +319,9 @@ public class NovelService {
 //
 //        }
 //
-        boolean active = likeInfoService.getPresentLike(novel_id, patchLikeReq.getUser_id());
+        LIKEINFO l = likeInfoService.getPresentLike(novel_id, patchLikeReq.getUser_id());
 
-        return new PatchLikeRes(patchLikeReq.getUser_id(), active, novel_id);
+        return new PatchLikeRes(patchLikeReq.getUser_id(), l.isLikeinfo_active(), novel_id);
 
     }
     public Integer changeLikeCount(Long like_count, Long novel_id){

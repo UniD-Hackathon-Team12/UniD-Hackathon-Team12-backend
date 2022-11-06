@@ -61,11 +61,10 @@ public class LikeInfoService {
 
     }
 
-    public boolean getPresentLike(Long novel_id, Long user_id){
-        boolean check = likeInfoRepository.getPresentLike(novel_id, user_id);
-        System.out.println("check~~~~~~~~~~~~~ : " + check);
+    public LIKEINFO getPresentLike(Long novel_id, Long user_id){
+        LIKEINFO l = likeInfoRepository.getPresentLike2(novel_id, user_id);
 
-        return check;
+        return l;
 
     }
 
