@@ -151,16 +151,76 @@
   │   ├──  main
   │   │   ├──  java/com/example/demo
   │   │   │   ├──  config
+  │   │   │   │   ├──  secret
+  │   │   │   │   │   └──  Secret.java
+  │   │   │   │   ├──  BaseException.java
+  │   │   │   │   ├──  BaseResponse.java
+  │   │   │   │   ├──  BaseExceptionStatus.java
+  │   │   │   │   └──  Constant.java
   │   │   │   ├──  src
   │   │   │   │   ├──  controller
+  │   │   │   │   │   ├──  KeywordController.java
+  │   │   │   │   │   ├──  NovelController.java
+  │   │   │   │   │   └──  UserController.java
   │   │   │   │   ├──  dto
+  │   │   │   │   │   ├──  request
+  │   │   │   │   │   │   ├──  GetAllReq.java
+  │   │   │   │   │   │   ├──  GetCategoryReq.java
+  │   │   │   │   │   │   ├──  GetMyPageReq.java
+  │   │   │   │   │   │   ├──  GetNovelIdReq.java
+  │   │   │   │   │   │   ├──  GetNovelListSearchReq.java
+  │   │   │   │   │   │   ├──  GetRankReq.java
+  │   │   │   │   │   │   ├──  PatchKeywordReq.java
+  │   │   │   │   │   │   ├──  PatchLikeReq.java
+  │   │   │   │   │   │   ├──  PostNovelReq.java
+  │   │   │   │   │   │   ├──  PostRelayReq.java
+  │   │   │   │   │   │   ├──  PostSignUpReq.java
+  │   │   │   │   │   │   └──  PostSignInReq.java
+  │   │   │   │   │   └──  reponse
+  │   │   │   │   │   │   ├──  GetAllRes.java
+  │   │   │   │   │   │   ├──  GetCategoryRes.java
+  │   │   │   │   │   │   ├──  GetMyPageRes.java
+  │   │   │   │   │   │   ├──  GetNovelIdRes.java
+  │   │   │   │   │   │   ├──  GetNovelListSearchRes.java
+  │   │   │   │   │   │   ├──  GetRankRes.java
+  │   │   │   │   │   │   ├──  PatchKeywordRes.java
+  │   │   │   │   │   │   ├──  PatchLikeRes.java
+  │   │   │   │   │   │   ├──  PostNovelRes.java
+  │   │   │   │   │   │   ├──  PostRelayRes.java
+  │   │   │   │   │   │   ├──  PostSignUpRes.java
+  │   │   │   │   │   │   └──  PostSignInRes.java
   │   │   │   │   ├──  entity
+  │   │   │   │   │   │   ├──  BaseTimeEntity.java
+  │   │   │   │   │   │   ├──  KEYWORD.java
+  │   │   │   │   │   │   ├──  KEYWORDRANK.java
+  │   │   │   │   │   │   ├──  LIKEINFO.java
+  │   │   │   │   │   │   ├──  NOVEL.java
+  │   │   │   │   │   │   ├──  RELAY.java
+  │   │   │   │   │   │   └──  USER.java
   │   │   │   │   ├──  repository
+  │   │   │   │   │   │   ├──  KeywordRankRepository.java
+  │   │   │   │   │   │   ├──  KeywordRepository.java
+  │   │   │   │   │   │   ├──  LikeInfoRepository.java
+  │   │   │   │   │   │   ├──  NovelRepository.java
+  │   │   │   │   │   │   ├──  NovelRepositoryCustom.java
+  │   │   │   │   │   │   ├──  NovelRepositoryImpl.java
+  │   │   │   │   │   │   ├──  RelayRepository.java
+  │   │   │   │   │   │   └──  UserRepository.java
   │   │   │   │   ├──  service
+  │   │   │   │   │   │   ├──  KeywordRankService.java
+  │   │   │   │   │   │   ├──  KeywordService.java
+  │   │   │   │   │   │   ├──  LikeInfoService.java
+  │   │   │   │   │   │   ├──  NovelService.java
+  │   │   │   │   │   │   └──  UserService.java
   │   │   │   │   └──  WebSecurityConfig.java
   │   │   │   ├──  utils
+  │   │   │   │   ├──  JWTService.java
+  │   │   │   │   ├──  SHA256.java
+  │   │   │   │   └──  ValidationRegex.java
   │   │   │   └──  DemoApplication.java
   │   │   └──  resources
+  │   │   │   ├──  application.yml
+  │   │   │   └──  logback-spring.xml
   ├──  .gitignore
   ├──  build.gradle
   ├──  gradlew
