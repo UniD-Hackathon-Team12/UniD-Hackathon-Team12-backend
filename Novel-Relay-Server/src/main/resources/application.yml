@@ -7,9 +7,9 @@ spring:
 
   datasource:
     platform: mysql
-    url: jdbc:mysql://relay-novel-db.cewe7c8a1xjv.ap-northeast-2.rds.amazonaws.com:3306/relaynovel
-    username: root
-    password: unid2022
+    url: # Your rds url (삭제함)
+    username: # Your username
+    password: # Your password
     driver-class-name: com.mysql.cj.jdbc.Driver # mysql 8버전
     # driver-class-name: com.mysql.jdbc.Driver # mysql 5버전
     hikari:
