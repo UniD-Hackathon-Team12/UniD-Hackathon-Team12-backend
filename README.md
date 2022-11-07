@@ -45,20 +45,16 @@
     <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175440324-3349ac40-c1d6-4227-a9d8-89bf205fbe65.png"></td>
   </tr>
   <tr>
-    <td align="center"><b>스플래시</b></td>
-    <td align="center"><b>습관 탭</b></td>
+    <td align="center"><b>로그인</b></td>
+    <td align="center"><b>회원가입</b></td>
   </tr>
 </table>
 <table>
   <tr>
     <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175440346-f450f8b0-e370-4bb2-9761-6a7b996559e5.png"></td>
-    <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175440395-52be145b-b78f-4fcf-904c-799f3c6cd51d.png"></td>
-    <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175440433-38968a1a-5f1f-49f2-886d-87ca1ebb182c.png"></td> 
   </tr>
   <tr>
-    <td align="center"><b>챌린지 탭</b></td>
-    <td align="center"><b>챌린지 상세</b></td>
-    <td align="center"><b>챌린지 참여</b></td>
+    <td align="center"><b>소설 검색(키워드/내용)</b></td>
   </tr>
 </table>
 <table>
@@ -67,8 +63,8 @@
     <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175440599-338416c1-cdb2-4b4b-8d0b-cd14bd9b196c.png"></td>
   </tr>
   <tr>
-    <td align="center"><b>마켓 탭</b></td>
-    <td align="center"><b>마켓 상품 등록</b></td>
+    <td align="center"><b>카테고리 탭</b></td>
+    <td align="center"><b>카테고리 소설</b></td>
   </tr>
 </table> 
 <table>
@@ -77,11 +73,28 @@
     <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175440669-329eb6b3-925f-42b4-9ae6-30f3b08c78cf.png"></td>
   </tr>
   <tr>
-     <td align="center"><b>마이페이지</b></td>
+     <td align="center"><b>소설 시작하기</b></td>
      <td align="center"><b>챌린지 참여 내역</b></td>
   </tr>
 </table>
-  
+<table>
+  <tr>
+    <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175441283-db777079-4e5c-4033-8272-ffc5505a43e7.png"></td>
+    <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175440669-329eb6b3-925f-42b4-9ae6-30f3b08c78cf.png"></td>
+  </tr>
+  <tr>
+     <td align="center"><b>소설 읽기</b></td>
+     <td align="center"><b>소설 이어쓰기</b></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175441283-db777079-4e5c-4033-8272-ffc5505a43e7.png"></td>
+  </tr>
+  <tr>
+     <td align="center"><b>마이페이지(작성글/참여글/좋아요글)</b></td>
+  </tr>
+</table>
   <br>
 
 ## 💻 Tech Stack
@@ -93,28 +106,36 @@
           Spring Boot
         </td>
   </tr>
-<tr>
-
-<td><b>Cloud</b></td>
-<td>
-  //
-<br>
-  <strong>//<strong>
-</td>
-<tr>
+  <tr>
+    <td><b>Database</b></td>
+       <td>
+         MySQL + RDS
+       </td>
+  </tr>
+  <tr>
+  <tr>
+    <td><b>배포</b></td>
+       <td>
+         Amason EC2
+       </td>
+  </tr>
+  <tr>
     <td><b>Strategy</b></td>
-<td>RESTful API</td>
-</tr>
-<tr>
+       <td>
+         RESTful API
+       </td>
+  </tr>
+  <tr>
     <td><b>Other Tool</b></td>
-<td>Notion, Slack</td>
-</tr>
+       <td>
+         Notion, Slack
+       </td>
+  </tr>
 </tbody>
 </table>
 <br>
 
 ## 👍 시스템 구조
-![iShot_2022-06-27_15 15 47](https://user-images.githubusercontent.com/72367040/175872280-9e81691d-775a-449a-9f46-dc8681552c03.jpg)
 
 <br>
 
