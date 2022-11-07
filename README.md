@@ -41,8 +41,9 @@
 
 <table>
   <tr>
-    <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175440257-7fcf199c-e3f1-4a91-a187-ebfbe3202d36.png"></td>
-    <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175440324-3349ac40-c1d6-4227-a9d8-89bf205fbe65.png"></td>
+    <td><img width="700" alt="image" src="https://user-images.githubusercontent.com/79784618/200354274-fee4e057-bac2-434d-be24-19dcaae7ba02.png"></td>
+    <td><img width="700" alt="image" src="https://user-images.githubusercontent.com/79784618/200354402-acf795e7-073e-4256-aeb0-d211ff9ab82e.png">
+</td>
   </tr>
   <tr>
     <td align="center"><b>로그인</b></td>
@@ -51,7 +52,7 @@
 </table>
 <table>
   <tr>
-    <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175440346-f450f8b0-e370-4bb2-9761-6a7b996559e5.png"></td>
+    <td><img width="700" alt="image" src="https://user-images.githubusercontent.com/79784618/200354520-c8e85e4f-9605-4f86-adff-0772593ecbe3.png"></td>
   </tr>
   <tr>
     <td align="center"><b>소설 검색(키워드/내용)</b></td>
@@ -59,8 +60,8 @@
 </table>
 <table>
   <tr>
-    <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175440522-72934043-f3df-4620-8f82-6e4cdf1de382.png"></td>
-    <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175440599-338416c1-cdb2-4b4b-8d0b-cd14bd9b196c.png"></td>
+    <td><img width="700" alt="image" src="https://user-images.githubusercontent.com/79784618/200354674-d7fbfd85-e811-41b6-93e7-79ef3da80a69.png"></td>
+    <td><img width="700" alt="image" src="https://user-images.githubusercontent.com/79784618/200354756-6a327daa-0155-42e8-b218-baf69babc94e.png"></td>
   </tr>
   <tr>
     <td align="center"><b>카테고리 탭</b></td>
@@ -69,18 +70,16 @@
 </table> 
 <table>
   <tr>
-    <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175441283-db777079-4e5c-4033-8272-ffc5505a43e7.png"></td>
-    <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175440669-329eb6b3-925f-42b4-9ae6-30f3b08c78cf.png"></td>
+    <td><img width="700" alt="image" src="https://user-images.githubusercontent.com/79784618/200354921-14bc2137-ad82-4393-89d5-d9d9bcb1b70f.png"></td>
   </tr>
   <tr>
      <td align="center"><b>소설 시작하기</b></td>
-     <td align="center"><b>챌린지 참여 내역</b></td>
   </tr>
 </table>
 <table>
   <tr>
-    <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175441283-db777079-4e5c-4033-8272-ffc5505a43e7.png"></td>
-    <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175440669-329eb6b3-925f-42b4-9ae6-30f3b08c78cf.png"></td>
+    <td><img width="700" alt="image" src="https://user-images.githubusercontent.com/79784618/200355056-ac8cb00b-c3ac-44b4-b6f5-0fad062a378f.png"></td>
+    <td><img width="700" alt="image" src="https://user-images.githubusercontent.com/79784618/200355152-d4d54851-e21a-4f03-8423-79d1b4d11d3a.png"></td>
   </tr>
   <tr>
      <td align="center"><b>소설 읽기</b></td>
@@ -89,7 +88,8 @@
 </table>
 <table>
   <tr>
-    <td><img width="200" src="https://user-images.githubusercontent.com/63237214/175441283-db777079-4e5c-4033-8272-ffc5505a43e7.png"></td>
+    <td><img width="700" alt="image" src="https://user-images.githubusercontent.com/79784618/200355272-6da27c5b-1f05-4dee-a511-c0be8498a3bf.png">
+</td>
   </tr>
   <tr>
      <td align="center"><b>마이페이지(작성글/참여글/좋아요글)</b></td>
