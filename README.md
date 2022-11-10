@@ -10,7 +10,7 @@
 
 <br>
 
-## ⚙️ 시현방법
+## ⚙️ 시방법
 ```bash
  git clone https://github.com/UniD-Hackathon-Team12/UniD-Hackathon-Team12-backend.git
 ```
