@@ -32,6 +32,14 @@
   - novel/part/:challenge API 구현
   - novel/:novelid API 구현
   - novel/:novelid/relay API 구현
+  
+- 김민지 (숙명여자대학교)
+  - 데이터 베이스 개념적 설계 & 논리적 설계
+  - /keyword/rank API 구현
+  - novel/all API 구현
+  - novel/:novelid/relay API 구현
+  - novel/:novelid/keyword API 구현
+  - novel/:novelid/like API Bug Fix
 
 
 <br>
